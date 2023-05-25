@@ -1,6 +1,7 @@
 package medxpert.main.daniyal_medxpert;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,8 +18,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Showing back button on toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         TextView textView = findViewById(R.id.register);
-        String html = "<font color=" + Color.BLACK + ">Not a member? </font><font color= #0755E9"
+        String html = "<font color=#808080"  + ">Not a member? </font><font color= #0755E9"
                 + "> Register Now!!</font>";
         textView.setText(Html.fromHtml(html));
 

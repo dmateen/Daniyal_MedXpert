@@ -36,6 +36,9 @@ public class MedicalRecord extends AppCompatActivity {
         prescriptions.add(new MedicalRecord_Pojo("Daniyal","12/Apr/2023","General Physician"));
         prescriptions.add(new MedicalRecord_Pojo("Hamza","19/Apr/2023","MBBS"));
         prescriptions.add(new MedicalRecord_Pojo("Basiq","21/Nov/2023","Physician"));
+        prescriptions.add(new MedicalRecord_Pojo("Daniyal","12/Apr/2023","General Physician"));
+        prescriptions.add(new MedicalRecord_Pojo("Hamza","19/Apr/2023","MBBS"));
+        prescriptions.add(new MedicalRecord_Pojo("Basiq","21/Nov/2023","Physician"));   
 
         //-------------Adding Dummy Data Set -----------------
 
