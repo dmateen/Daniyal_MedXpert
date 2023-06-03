@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="signUp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".signup">
@@ -22,9 +20,6 @@
             android:background="#00FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
 
         <TextView
@@ -47,7 +42,6 @@
             android:text="Your journey to better health starts here 🥳. "
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
 
 
         <LinearLayout
@@ -81,8 +75,7 @@
                 app:endIconMode="clear_text"
                 app:endIconTint="#0755E9"
                 app:helperText="Please enter your First Name"
-                app:helperTextEnabled="true"
-                >
+                app:helperTextEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -127,8 +120,8 @@
                 android:id="@+id/cnic_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
                 android:focusable="auto"
                 android:focusableInTouchMode="true"
@@ -143,8 +136,7 @@
                 app:endIconMode="clear_text"
                 app:endIconTint="#0755E9"
                 app:helperText="Please enter your CNIC"
-                app:helperTextEnabled="true"
-                >
+                app:helperTextEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -154,44 +146,45 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/date_EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:focusable="auto"
-                android:focusableInTouchMode="true"
-                android:hint="Date of Birth"
-                app:boxBackgroundColor="#00FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxStrokeColor="#0755E9"
-                app:endIconMode="clear_text"
-                app:endIconTint="#0755E9"
-                app:helperText="Please enter your Date of Birth"
-                app:helperTextEnabled="true"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dateOfBirthEditText"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateOfBirthInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:onClick="showDatePicker" />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:focusable="auto"
+                    android:focusableInTouchMode="true"
+                    android:hint="Date of Birth"
+                    app:boxBackgroundColor="#00FFFFFF"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxStrokeColor="#0755E9"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="#0755E9"
+                    app:helperText="Please enter your Date of Birth"
+                    app:helperTextEnabled="true"
+                    >
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateOfBirthEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:onClick="showDatePicker"
+                         />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
 
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -199,8 +192,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Select Gender"
-                    app:helperTextEnabled="false"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:helperTextEnabled="false">
 
                     <RadioGroup
                         android:id="@+id/genderRadioGroup"
@@ -209,17 +202,17 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:layout_weight="1"
                             android:id="@+id/maleRadioButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="Male" />
 
                         <RadioButton
-                            android:layout_weight="1"
                             android:id="@+id/femaleRadioButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="Female" />
 
                     </RadioGroup>
@@ -237,11 +230,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -279,8 +272,8 @@
                     android:id="@+id/phoneNumberInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:layout_marginTop="8dp"
+                    android:layout_weight="2"
 
                     android:focusable="auto"
                     android:focusableInTouchMode="true"
@@ -312,8 +305,8 @@
                 android:id="@+id/password_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
                 android:focusable="auto"
                 android:focusableInTouchMode="true"
@@ -340,7 +333,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <Button
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
@@ -349,29 +341,26 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/roundedbtn_layout"
+                android:onClick="signUp"
                 android:text="Register"
-                android:theme="@style/Theme.Daniyal_MedXpert_Custom"
-                />
+                android:theme="@style/Theme.Daniyal_MedXpert_Custom" />
 
             <TextView
                 android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/roboto_bold"
+                android:onClick="moveToLogin"
                 android:text="Already a Member? Login"
-                android:textColor="#0755E9"
-                />
-
-
+                android:textAlignment="center"
+                android:textColor="#0755E9" />
 
 
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
