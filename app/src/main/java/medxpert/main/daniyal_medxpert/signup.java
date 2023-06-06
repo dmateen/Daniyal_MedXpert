@@ -16,14 +16,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import medxpert.main.daniyal_medxpert.Database.Db_Handler;
 import medxpert.main.daniyal_medxpert.POJO.SignupUser;
+import medxpert.main.daniyal_medxpert.Validations.Validation;
 
 public class signup extends AppCompatActivity {
 
@@ -35,6 +37,7 @@ public class signup extends AppCompatActivity {
     private TextInputLayout countryCodeEditText;
     private TextInputLayout phoneNumberEditText;
     private TextInputLayout passwordEditText;
+    private TextInputLayout dateInputLayout;
 
     String firstName;
     String lastName;
@@ -55,6 +58,7 @@ public class signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
 
+
         dbHandler=new Db_Handler("patients");
 
         //Showing back button on toolbar
@@ -73,6 +77,7 @@ public class signup extends AppCompatActivity {
         phoneNumberEditText = findViewById(R.id.phoneNumberInputLayout);
         passwordEditText = findViewById(R.id.password_EditText);
         dateOfBirthEditText = findViewById(R.id.dateOfBirthEditText);
+        dateInputLayout = findViewById(R.id.dateOfBirthInputLayout);
 
 
         //Adding Listeners
@@ -86,94 +91,6 @@ public class signup extends AppCompatActivity {
 
     }
 
-    // Define OnFocusChangeListener for each field
-    private View.OnFocusChangeListener firstNameFocusChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (!hasFocus) {
-                firstNameEditText = findViewById(R.id.firstName_EditText);
-                firstName = firstNameEditText.getEditText().getText().toString().trim();
-                if (!validateFirstName(firstName)) {
-                    firstNameEditText.setError("Invalid first name");
-                } else {
-                    firstNameEditText.setError(null);
-                }
-            }
-        }
-    };
-
-
-    private View.OnFocusChangeListener lastNameFocusChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (!hasFocus) {
-                lastName = lastNameEditText.getEditText().getText().toString().trim();
-                if (!validateLastName(lastName)) {
-                    lastNameEditText.setError("Invalid last name");
-                } else {
-                    lastNameEditText.setError(null);
-                }
-            }
-        }
-    };
-
-    private View.OnFocusChangeListener cnicFocusChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (!hasFocus) {
-                cnic = cnicEditText.getEditText().getText().toString().trim();
-                if (!validateCNIC(cnic)) {
-                    cnicEditText.setError("Invalid CNIC - Must be 13 numbers without dashes");
-                } else {
-                    cnicEditText.setError(null);
-                }
-            }
-        }
-    };
-
-
-    private View.OnFocusChangeListener countryCodeFocusChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (!hasFocus) {
-                countryCode = countryCodeEditText.getEditText().getText().toString().trim();
-                if (!validateCountryCode(countryCode)) {
-                    countryCodeEditText.setError("Invalid country code");
-                } else {
-                    countryCodeEditText.setError(null);
-                }
-            }
-        }
-    };
-
-    private View.OnFocusChangeListener phoneNumberFocusChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (!hasFocus) {
-                phoneNumber = phoneNumberEditText.getEditText().getText().toString().trim();
-                if (!validatePhoneNumber(phoneNumber)) {
-                    phoneNumberEditText.setError("Invalid phone number");
-                } else {
-                    phoneNumberEditText.setError(null);
-                }
-            }
-        }
-    };
-
-    private View.OnFocusChangeListener passwordFocusChangeListener = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (!hasFocus) {
-                password = passwordEditText.getEditText().getText().toString().trim();
-                if (!validatePassword(password)) {
-                    passwordEditText.setError("Invalid password - Must be 8 characters atleast ");
-                } else {
-                    passwordEditText.setError(null);
-                }
-            }
-        }
-
-    };
 
     public void moveToLogin(View view){
         this.startActivity(new Intent(this,login.class));
@@ -182,166 +99,79 @@ public class signup extends AppCompatActivity {
     //Function when register button is clicked
     public void signUp(View view) {
 
-        dateOfBirth = dateOfBirthEditText.getText().toString();
-        genderRadioGroup = findViewById(R.id.genderRadioGroup);
+        //Clearing Focus of all the fields
+        passwordEditText.clearFocus();
 
+
+        // Validating Data
         if(!validateFields(view))
             return;
-
-
-        // Initialize the EditText views
-
-        gender = ((RadioButton) findViewById(genderRadioGroup.getCheckedRadioButtonId())).getText().toString();
-
-
-
 
         // Create a data object to represent the user's data
         SignupUser user = new SignupUser(firstName, lastName, cnic, dateOfBirth, gender, countryCode, phoneNumber, password);
 //
-//        // Write the data to the database using the DbHandler instance
-//        dbHandler.writeData("Patient_Users", user);
+        // Write the data to the database using the DbHandler instance
+        dbHandler.writeData(cnic, user);
 //
-        Toast.makeText(this, firstName+" "+lastName+" "+cnic+" "+gender+" "+dateOfBirth+" "+countryCode+" "+phoneNumber+" "+password, Toast.LENGTH_SHORT).show();
-    }
+        Toast.makeText(this, firstName+" "+lastName+" "+cnic+" "+gender+" "+dateOfBirth+" "+countryCode+" "+phoneNumber+" ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,password, Toast.LENGTH_SHORT).show();
 
-    // Function to validate first name
-    private boolean validateFirstName(String firstName) {
-        // Perform validation here
-        // You can modify this function based on your validation rules for the first name
-        // Return true if the first name is valid, false otherwise
-        return firstName.matches("[a-zA-Z ]+");
-    }
-
-    // Function to validate last name
-    private boolean validateLastName(String lastName) {
-        // Perform validation here
-        // You can modify this function based on your validation rules for the last name
-        // Return true if the last name is valid, false otherwise
-        return lastName.matches("[a-zA-Z ]+");
-    }
-
-    // Function to validate CNIC
-    private boolean validateCNIC(String cnic) {
-        // Perform validation here
-        // You can modify this function based on your validation rules for the CNIC
-        // Return true if the CNIC is valid, false otherwise
-        return cnic.matches("[0-9]{13}");
+        //Intent to move to the login page
+        startActivity(new Intent(this, login.class));
     }
 
 
-    // Function to validate country code
-    private boolean validateCountryCode(String countryCode) {
-        // Perform validation here
-        // You can modify this function based on your validation rules for the country code
-        // Return true if the country code is valid, false otherwise
-        return countryCode.matches("[0-9]+");
-    }
-
-    // Function to validate phone number
-    private boolean validatePhoneNumber(String phoneNumber) {
-        // Perform validation here
-        // You can modify this function based on your validation rules for the phone number
-        // Return true if the phone number is valid, false otherwise
-        return phoneNumber.matches("[0-9]+");
-    }
-
-    // Function to validate password
-    private boolean validatePassword(String password) {
-        // Perform validation here
-        // You can modify this function based on your validation rules for the password
-        // Return true if the password is valid, false otherwise
-        return password.length() >= 8;
-    }
 
     private boolean validateFields(View view) {
-        // Validate first name
-        String firstName = firstNameEditText.getEditText().getText().toString().trim();
-        if (firstName.isEmpty()) {
-            firstNameEditText.setError("First name is required");
-            return false;
-        } else {
-            firstNameEditText.setError(null);
-        }
 
-        // Validate last name
-        String lastName = lastNameEditText.getEditText().getText().toString().trim();
-        if (lastName.isEmpty()) {
-            lastNameEditText.setError("Last name is required");
+        // Validate First Name
+        firstName = firstNameEditText.getEditText().getText().toString().trim();
+        if(!Validation.validateName(firstName,firstNameEditText))
             return false;
-        } else {
-            lastNameEditText.setError(null);
-        }
+
+        // Validate Last Name
+        lastName = lastNameEditText.getEditText().getText().toString().trim();
+        if(!Validation.validateName(lastName,lastNameEditText))
+            return false;
 
         // Validate CNIC
-        String cnic = cnicEditText.getEditText().getText().toString().trim();
-        String cnicRegex = "^[0-9]{13}$"; // Example regex for CNIC format
-        if (!cnic.matches(cnicRegex)) {
-            cnicEditText.setError("Invalid CNIC format");
+        cnic = cnicEditText.getEditText().getText().toString().trim();
+        if(!Validation.validateCNIC(cnic,cnicEditText))
             return false;
-        } else {
-            cnicEditText.setError(null);
-        }
 
         // Validate date of birth
-        String dateOfBirth = dateOfBirthEditText.getText().toString().trim();
-        if (dateOfBirth.isEmpty()) {
-            // Perform date validation logic here, similar to the previous example
-            // ...
-
-            // For example, if date is invalid:
-            dateOfBirthEditText.setError("Invalid date");
+        dateOfBirth = dateOfBirthEditText.getText().toString();
+        if(!Validation.validateDateOfBirth(dateOfBirth,dateOfBirthEditText))
             return false;
-        } else {
-            dateOfBirthEditText.setError(null);
-        }
 
         // Validate gender
+        genderRadioGroup = findViewById(R.id.genderRadioGroup);
         int selectedGenderId = genderRadioGroup.getCheckedRadioButtonId();
-        if (selectedGenderId == -1) {
-
-            TextView genderHelperText= findViewById(R.id.genderHelperText);
-            genderHelperText.setTextColor(Color.RED);
-
+        TextView genderHelperText= findViewById(R.id.genderHelperText);
+        if(!Validation.validateGender(selectedGenderId,genderHelperText))
             return false;
-        }
-        else{
-            TextView genderHelperText= findViewById(R.id.genderHelperText);
-            genderHelperText.setTextColor(ColorStateList.valueOf(0xFF808080));
-        }
+        gender = ((RadioButton) findViewById(genderRadioGroup.getCheckedRadioButtonId())).getText().toString();
 
-        // Validate country code
+
+        // Validate Country Code
+        countryCode = countryCodeEditText.getEditText().getText().toString().trim();
         countryCode = "+"+countryCodeEditText.getEditText().getText().toString();
-
-        String countryCodeRegex = "^[+][0-9]{1,3}$"; // Example regex for country code format: starts with '+' followed by 1 to 3 digits
-        Toast.makeText(this, countryCode, Toast.LENGTH_SHORT).show();
-        if (!countryCode.matches(countryCodeRegex)) {
-            countryCodeEditText.setError("Invalid country code format");
+        if(!Validation.validateCountryCode(countryCode,countryCodeEditText))
             return false;
-        } else {
-            countryCodeEditText.setError(null);
-        }
 
-        // Validate phone number
-        String phoneNumber = phoneNumberEditText.getEditText().getText().toString().trim();
-        String phoneNumberRegex = "^[0-9]{10}$"; // Example regex for 10-digit phone number
-        if (!phoneNumber.matches(phoneNumberRegex)) {
-            phoneNumberEditText.setError("Invalid phone number format");
+        // Validate Phone Number
+        phoneNumber = phoneNumberEditText.getEditText().getText().toString().trim();
+        if(!Validation.validatePhoneNumber(phoneNumber,phoneNumberEditText))
             return false;
-        } else {
-            phoneNumberEditText.setError(null);
-        }
 
-        // Validate password
-         password = passwordEditText.getEditText().getText().toString();
-        // Perform validation logic for password, if required
-        // ...
 
-        // All fields are valid
+        //Validate Password
+        password = passwordEditText.getEditText().getText().toString().trim();
+        if(!Validation.validatePassword(password,passwordEditText))
+            return false;
+
         return true;
     }
-
-
 
 
     public void showDatePicker(View view) {
@@ -362,9 +192,11 @@ public class signup extends AppCompatActivity {
                         // Get the current date
                         Calendar currentDate = Calendar.getInstance();
 
+
+
                         if (selectedDate.after(currentDate)) {
                             // If selected date is after the current date, show error message
-                            TextInputLayout dateInputLayout = findViewById(R.id.dateOfBirthInputLayout);
+                            dateInputLayout = findViewById(R.id.dateOfBirthInputLayout);
                             dateInputLayout.setErrorEnabled(true);
                             dateInputLayout.setError("Invalid date");
 
@@ -392,6 +224,79 @@ public class signup extends AppCompatActivity {
 
         datePickerDialog.show();
     }
+
+
+
+    //---------------Focus Listners-------------------------------------------
+    // Define OnFocusChangeListener for each field
+    private View.OnFocusChangeListener firstNameFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                firstName = firstNameEditText.getEditText().getText().toString().trim();
+                Validation.validateName(firstName,firstNameEditText);
+            }
+        }
+    };
+
+
+    private View.OnFocusChangeListener lastNameFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                lastName = lastNameEditText.getEditText().getText().toString().trim();
+                Validation.validateName(lastName,lastNameEditText);
+
+            }
+        }
+    };
+
+    private View.OnFocusChangeListener cnicFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                cnic = cnicEditText.getEditText().getText().toString().trim();
+                Validation.validateCNIC(cnic,cnicEditText);
+            }
+        }
+    };
+
+
+    private View.OnFocusChangeListener countryCodeFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+
+                countryCode = countryCodeEditText.getEditText().getText().toString().trim();
+                countryCode = "+"+countryCodeEditText.getEditText().getText().toString();
+                Validation.validateCountryCode(countryCode,countryCodeEditText);
+            }
+        }
+    };
+
+    private View.OnFocusChangeListener phoneNumberFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                phoneNumber = phoneNumberEditText.getEditText().getText().toString().trim();
+                Validation.validatePhoneNumber(phoneNumber,phoneNumberEditText);
+
+            }
+        }
+    };
+
+    private View.OnFocusChangeListener passwordFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                password = passwordEditText.getEditText().getText().toString().trim();
+                Validation.validatePassword(password,passwordEditText);
+
+            }
+        }
+
+    };
+
 
 
 }

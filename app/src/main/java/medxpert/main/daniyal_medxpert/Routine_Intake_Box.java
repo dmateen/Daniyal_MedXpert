@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -108,7 +106,7 @@ public class Routine_Intake_Box extends AppCompatActivity {
                 switch (itemId) {
                     case R.id.Home:
                         Toast.makeText(Routine_Intake_Box.this, "Home clicked ", Toast.LENGTH_SHORT).show();
-                        Intent i =new Intent(getApplicationContext(),dashboardtest.class);
+                        Intent i =new Intent(getApplicationContext(), dashboard.class);
                         startActivity(i);
                         // Handle Home item selection
                         // Navigate to the Home page or perform related actions

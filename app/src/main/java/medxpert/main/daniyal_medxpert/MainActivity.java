@@ -1,11 +1,9 @@
 package medxpert.main.daniyal_medxpert;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,13 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.appcompat.widget.Toolbar;
 
 
-import medxpert.main.daniyal_medxpert.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -69,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (itemId) {
                     case R.id.Home:
                         Toast.makeText(MainActivity.this, "Home clicked ", Toast.LENGTH_SHORT).show();
-                        Intent i =new Intent(getApplicationContext(),dashboardtest.class);
+                        Intent i =new Intent(getApplicationContext(), dashboard.class);
                         startActivity(i);
                         // Handle Home item selection
                         // Navigate to the Home page or perform related actions
