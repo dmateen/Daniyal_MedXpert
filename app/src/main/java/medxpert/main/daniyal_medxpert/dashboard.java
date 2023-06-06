@@ -4,9 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,24 +13,20 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class dashboardtest extends AppCompatActivity {
+public class dashboard extends AppCompatActivity {
 
     BottomNavigationView bottom_navigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboardtest);
+        setContentView(R.layout.activity_dashboard);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //Showing back button on toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //getSupportActionBar().setTitle(0);
-
-        //getSupportActionBar().setTitle("DashBoard");
-
-
 
 
         //TODO handling on click listener for each imagebutton:
@@ -43,7 +36,7 @@ public class dashboardtest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle button click event
-                Toast.makeText(dashboardtest.this, "Medical Record clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(dashboard.this, "Medical Record clicked", Toast.LENGTH_SHORT).show();
             }
         });
         ImageButton Reminders = findViewById(R.id.imageButton2);
@@ -51,7 +44,7 @@ public class dashboardtest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle button click event
-                Toast.makeText(dashboardtest.this, "Reminders clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(dashboard.this, "Reminders clicked", Toast.LENGTH_SHORT).show();
             }
         });
         ImageButton Med_Box = findViewById(R.id.imageButton3);
@@ -59,7 +52,7 @@ public class dashboardtest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle button click event
-                Toast.makeText(dashboardtest.this, "Med Box Cicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(dashboard.this, "Med Box Cicked", Toast.LENGTH_SHORT).show();
             }
         });
         ImageButton Lab_Test = findViewById(R.id.imageButton5);
@@ -67,7 +60,7 @@ public class dashboardtest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle button click event
-                Toast.makeText(dashboardtest.this, "Lab Test Cicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(dashboard.this, "Lab Test Cicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -80,22 +73,22 @@ public class dashboardtest extends AppCompatActivity {
                 int itemId = item.getItemId();
                 switch (itemId) {
                     case R.id.Home:
-                        Toast.makeText(dashboardtest.this, "Home clicked ", Toast.LENGTH_SHORT).show();
-                        Intent i =new Intent(getApplicationContext(),dashboardtest.class);
+                        Toast.makeText(dashboard.this, "Home clicked ", Toast.LENGTH_SHORT).show();
+                        Intent i =new Intent(getApplicationContext(), dashboard.class);
                         startActivity(i);
                         // Handle Home item selection
                         // Navigate to the Home page or perform related actions
                         return true;
                     case R.id.Record:
 
-                        Toast.makeText(dashboardtest.this, "Record clicked ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(dashboard.this, "Record clicked ", Toast.LENGTH_SHORT).show();
 
 
                         // Handle Record item selection
                         // Navigate to the Record page or perform related actions
                         return true;
                     case R.id.Account:
-                        Toast.makeText(dashboardtest.this, "Account clicked", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(dashboard.this, "Account clicked", Toast.LENGTH_SHORT).show();
 
                         return true;
                 }
