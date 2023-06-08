@@ -83,7 +83,7 @@ public class login extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(login.this, "CNIC or Phone Number not correct", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(login.this, "CNIC or Password not correct", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
