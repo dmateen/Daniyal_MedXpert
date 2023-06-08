@@ -7,7 +7,7 @@
     tools:context=".dashboard">
 
 
-        <androidx.appcompat.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -24,64 +24,214 @@
         android:fontFamily="@font/roboto_bold"
         android:text="DashBoard"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="@dimen/_20ssp"
         android:textStyle="bold" />
 </androidx.appcompat.widget.Toolbar>
 
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="178dp"
-        android:layout_height="299dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:scaleType="centerCrop"
-        app:circularflow_defaultRadius="10dp"
-        app:circularflow_radiusInDP="10dp"
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/medicalRecordBtn"
+        android:layout_width="@dimen/_132sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/medicalrecordbtn"
+        app:cardCornerRadius="@dimen/_20sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/medicalrecord"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/medicalrecordbtn" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Medical Record"
+                android:textSize="@dimen/_16ssp"
+                android:padding="@dimen/_12sdp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
-        />
-
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="178dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="16dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/remindersBtn"
+        android:layout_width="@dimen/_132sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:srcCompat="@drawable/reminders" />
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/medicalRecordBtn"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" >
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="178dp"
-        android:layout_height="171dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:srcCompat="@drawable/medboxxxx" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="178dp"
-        android:layout_height="299dp"
-        android:layout_below="@+id/toolbar"
-        android:scaleType="centerCrop"
-        app:circularflow_defaultRadius="10dp"
-        app:circularflow_radiusInDP="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+            <ImageView
 
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-        app:srcCompat="@drawable/labtestarrow" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/reminderbtn" />
+
+            <TextView
+
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Reminders"
+                android:textSize="@dimen/_16ssp"
+                android:padding="@dimen/_12sdp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/medBoxBtn"
+        android:layout_width="@dimen/_132sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:layout_constraintStart_toStartOf="@+id/medicalRecordBtn"
+        app:layout_constraintTop_toBottomOf="@+id/medicalRecordBtn"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/medbox" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Medbox"
+                android:textSize="@dimen/_16ssp"
+                android:padding="@dimen/_12sdp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/labTestBtn"
+        android:layout_width="@dimen/_132sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/medBoxBtn"
+        app:layout_constraintTop_toBottomOf="@+id/remindersBtn" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/labtestbtn" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Lab Tests"
+                android:textSize="@dimen/_16ssp"
+                android:padding="@dimen/_12sdp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <RelativeLayout
+
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
