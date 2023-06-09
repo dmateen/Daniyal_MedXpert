@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".Medicines" >
+    tools:context="medxpert.main.daniyal_medxpert.Fragments.Medicines" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -20,17 +20,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        android:background="#EEEEEE"
+        android:layout_gravity="bottom"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:orientation="horizontal"
+        >
 
         <Button
             android:id="@+id/addtomed"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:layout_weight="1"
             android:background="@drawable/layout2bottombtns"
             android:text="Add To Med Box"
@@ -38,8 +40,9 @@
 
         <Button
             android:id="@+id/sendpharmacy"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16sdp"
             android:layout_weight="1"
             android:background="@drawable/layout2bottombtns"
             android:text="Send Pharmacy"
