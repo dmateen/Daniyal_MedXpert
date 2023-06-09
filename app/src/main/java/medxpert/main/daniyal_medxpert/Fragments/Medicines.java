@@ -47,9 +47,9 @@ public class Medicines extends Fragment {
         list.add(new MedicineModel("Amoxil", "1","1", "1", "4 days", "2 hours after meal"));
         list.add(new MedicineModel("Amoxil", "1","1", "1", "4 days", "2 hours after meal"));
 
+        //Setting up recycle view
         MedicineAdapter adapter = new MedicineAdapter(list, getContext());
         recyclerView.setAdapter(adapter);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 

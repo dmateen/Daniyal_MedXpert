@@ -31,44 +31,8 @@ public class dashboard extends AppCompatActivity {
 
 
 //        //TODO handling on click listener for each imagebutton:
-//
-//        ImageButton medicalrecord = findViewById(R.id.medicalRecordBtn);
-//        medicalrecord.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle button click event
-//                Toast.makeText(dashboard.this, "Medical Record clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        ImageButton Reminders = findViewById(R.id.RemindersBtn);
-//        Reminders.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle button click event
-//                Toast.makeText(dashboard.this, "Reminders clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-//        ImageButton Med_Box = findViewById(R.id.medBoxBtn);
-//        Med_Box.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle button click event
-//                Toast.makeText(dashboard.this, "Med Box Cicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
-//        ImageButton Lab_Test = findViewById(R.id.LabTests);
-//        Lab_Test.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Handle button click event
-//                Toast.makeText(dashboard.this, "Lab Test Cicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
 
