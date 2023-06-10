@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dashboard">
+    tools:context=".patient.dashboard">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -24,7 +24,7 @@
         android:fontFamily="@font/roboto_bold"
         android:text="DashBoard"
         android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold" />
 </androidx.appcompat.widget.Toolbar>
 
@@ -232,7 +232,7 @@
 
     <RelativeLayout
 
-        android:id="@+id/relativeLayout"
+        android:id="@+id/relativelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"

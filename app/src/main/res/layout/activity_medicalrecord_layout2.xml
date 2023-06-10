@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="#EEEEEE"
     android:orientation="vertical"
-    tools:context=".medicalrecordLayout2">
+    tools:context=".patient.medicalrecordLayout2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
