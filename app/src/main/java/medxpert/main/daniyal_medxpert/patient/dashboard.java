@@ -37,9 +37,26 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(dashboard.this,PrescriptionList.class);
-                intent.putExtra("Name","Ali");
-                intent.putExtra("Designation","Heart Doctor");
-                intent.putExtra("Date","12/May/2023");
+                startActivity(intent);
+            }
+        });
+
+
+        CardView labTestCard=findViewById(R.id.labTestBtn);
+        labTestCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(dashboard.this,LabReports.class);
+                startActivity(intent);
+            }
+        });
+
+
+        CardView medBoxCard=findViewById(R.id.medBoxBtn);
+        medBoxCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(dashboard.this,MainActivity.class);
                 startActivity(intent);
             }
         });

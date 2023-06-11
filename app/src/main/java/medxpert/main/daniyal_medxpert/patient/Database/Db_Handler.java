@@ -32,51 +32,6 @@ public class Db_Handler {
                 });
     }
 
-//    public boolean checkLogin(String cnic, String password, LoginCallback logged_in) {
-//        Query query = databaseRef.orderByChild("cnic").equalTo(cnic);
-//
-//        DataSnapshot dataSnapshot = query.get().getResult();
-//
-//        if (dataSnapshot.exists()) {
-//            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-//                String storedPassword = childSnapshot.child("password").getValue(String.class);
-//                if (storedPassword != null && storedPassword.equals(password)) {
-//                    return true; // CNIC and password match found
-//                }
-//            }
-//        }
-//
-//        return false; // CNIC and password not found or do not match
-//
-//
-//    }
-
-//    public static void checkLogintest(String cnic, String password, final LoginCallback callback) {
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//        Query query = databaseReference.child("patients").orderByChild("cnic").equalTo(cnic);
-//
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-//                        String storedPassword = childSnapshot.child("password").getValue(String.class);
-//                        if (storedPassword != null && storedPassword.equals(password)) {
-//                            callback.onLoginSuccess(); // CNIC and password match found
-//                            return;
-//                        }
-//                    }
-//                }
-//                callback.onLoginFailure(); // CNIC and password not found or do not match
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                callback.onLoginFailure(); // Error occurred
-//            }
-//        });
-//    }
-//
     public interface LoginCallback {
         void onLoginSuccess();
         void onLoginFailure();

@@ -9,22 +9,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import medxpert.main.daniyal_medxpert.R;
-import medxpert.main.daniyal_medxpert.patient.POJO.RoutineIntake_Pojo;
+import medxpert.main.daniyal_medxpert.patient.POJO.MedBox;
+import medxpert.main.daniyal_medxpert.patient.POJO.medBoxContents_Pojo;
 import medxpert.main.daniyal_medxpert.patient.RecyclerViewAdapter.MedicineAdapter;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Routine_Intake_Box extends AppCompatActivity {
 
 
-    ArrayList<RoutineIntake_Pojo>  routine_Intake_List =new ArrayList<> ();
+//    ArrayList<medBoxContents_Pojo>  routine_Intake_List =new ArrayList<> ();
+    List<medBoxContents_Pojo> medicines;
     RecyclerView RoutineRecyclerView;
     LinearLayoutManager linearLayout;
     @Override
@@ -34,7 +37,10 @@ public class Routine_Intake_Box extends AppCompatActivity {
 
 //Toolbar code
         //getting title from intent
-        String titlename =getIntent().getStringExtra("Title name");
+
+        MedBox medBox = (MedBox) getIntent().getSerializableExtra("Medbox");
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -45,38 +51,38 @@ public class Routine_Intake_Box extends AppCompatActivity {
 
         //setting title on run time
         TextView toolbarTitle = findViewById(R.id.toolbartitle);
-        toolbarTitle.setText(titlename);
+        toolbarTitle.setText(medBox.getName());
 
         
         
 
 
 
-        RoutineIntake_Pojo med1=new RoutineIntake_Pojo("Panadol 5mg", 10);
-        RoutineIntake_Pojo med2=new RoutineIntake_Pojo("Brufin", 3);
-        RoutineIntake_Pojo med3=new RoutineIntake_Pojo("Imodium", 9);
-        RoutineIntake_Pojo med4=new RoutineIntake_Pojo("Disprin", 7);
-        RoutineIntake_Pojo med5=new RoutineIntake_Pojo("dawai 5mg", 10);
-        RoutineIntake_Pojo med6=new RoutineIntake_Pojo("dawai ", 3);
-        RoutineIntake_Pojo med7=new RoutineIntake_Pojo("dawai ", 9);
-        RoutineIntake_Pojo med8=new RoutineIntake_Pojo("dawai ", 7);
-        RoutineIntake_Pojo med9=new RoutineIntake_Pojo("Panadol ", 10);
-        RoutineIntake_Pojo med10=new RoutineIntake_Pojo("Brufin", 3);
-        RoutineIntake_Pojo med11=new RoutineIntake_Pojo("Imodium", 9);
-        RoutineIntake_Pojo med12=new RoutineIntake_Pojo("Disprin", 7);
-
-        routine_Intake_List.add(med1);
-        routine_Intake_List.add(med2);
-        routine_Intake_List.add(med3);
-        routine_Intake_List.add(med4);
-        routine_Intake_List.add(med5);
-        routine_Intake_List.add(med6);
-        routine_Intake_List.add(med7);
-        routine_Intake_List.add(med8);
-        routine_Intake_List.add(med9);
-        routine_Intake_List.add(med10);
-        routine_Intake_List.add(med11);
-        routine_Intake_List.add(med12);
+//        medBoxContents_Pojo med1=new medBoxContents_Pojo("Panadol 5mg", 10);
+//        medBoxContents_Pojo med2=new medBoxContents_Pojo("Brufin", 3);
+//        medBoxContents_Pojo med3=new medBoxContents_Pojo("Imodium", 9);
+//        medBoxContents_Pojo med4=new medBoxContents_Pojo("Disprin", 7);
+//        medBoxContents_Pojo med5=new medBoxContents_Pojo("dawai 5mg", 10);
+//        medBoxContents_Pojo med6=new medBoxContents_Pojo("dawai ", 3);
+//        medBoxContents_Pojo med7=new medBoxContents_Pojo("dawai ", 9);
+//        medBoxContents_Pojo med8=new medBoxContents_Pojo("dawai ", 7);
+//        medBoxContents_Pojo med9=new medBoxContents_Pojo("Panadol ", 10);
+//        medBoxContents_Pojo med10=new medBoxContents_Pojo("Brufin", 3);
+//        medBoxContents_Pojo med11=new medBoxContents_Pojo("Imodium", 9);
+//        medBoxContents_Pojo med12=new medBoxContents_Pojo("Disprin", 7);
+//
+//        routine_Intake_List.add(med1);
+//        routine_Intake_List.add(med2);
+//        routine_Intake_List.add(med3);
+//        routine_Intake_List.add(med4);
+//        routine_Intake_List.add(med5);
+//        routine_Intake_List.add(med6);
+//        routine_Intake_List.add(med7);
+//        routine_Intake_List.add(med8);
+//        routine_Intake_List.add(med9);
+//        routine_Intake_List.add(med10);
+//        routine_Intake_List.add(med11);
+//        routine_Intake_List.add(med12);
 
 
 
@@ -91,7 +97,7 @@ public class Routine_Intake_Box extends AppCompatActivity {
 
         RoutineRecyclerView=findViewById(R.id.Routine_intake);
 
-        MedicineAdapter routineIntakemanager = new MedicineAdapter(this, routine_Intake_List ); //passing array list "routine_Intake_List" inside it
+        MedicineAdapter routineIntakemanager = new MedicineAdapter(this, medicines ); //passing array list "routine_Intake_List" inside it
 
         RoutineRecyclerView.setAdapter(routineIntakemanager);
         linearLayout = new LinearLayoutManager(this);
