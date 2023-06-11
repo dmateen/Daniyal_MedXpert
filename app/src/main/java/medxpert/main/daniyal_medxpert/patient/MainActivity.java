@@ -4,12 +4,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.patient.POJO.MedBox;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottom_navigation;
 
     ListView mlistView;
-    ArrayList<String> my_array_list;
-    ArrayAdapter<String> my_array_Adapter;
+    ArrayList<MedBox> my_array_list;
+    ArrayAdapter<MedBox> my_array_Adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,19 +96,36 @@ public class MainActivity extends AppCompatActivity {
 
         //list display starts here
 
+
+
+         my_array_list=new ArrayList<MedBox>();
+//        my_array_list.add("Medical box 1");
+//        my_array_list.add("Medical box 2");
+//        my_array_list.add("Medical box 3");
+//        my_array_list.add("Medical box 4");
+//        my_array_list.add("Medical box 5");
+//        my_array_list.add("Medical box 6");
+//        my_array_list.add("Medical box 7");
+//        my_array_list.add("Medical box 8");
+
+        my_array_Adapter=new ArrayAdapter<MedBox>(this, android.R.layout.simple_list_item_1,my_array_list){
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                }
+                MedBox temp= (MedBox) getItem(position);
+
+                TextView textView = convertView.findViewById(android.R.id.text1);
+                textView.setText(temp.getName());
+
+
+                return convertView;
+            }
+
+        };
         mlistView=findViewById(R.id.medical_box_list);
-
-         my_array_list=new ArrayList<>();
-        my_array_list.add("Medical box 1");
-        my_array_list.add("Medical box 2");
-        my_array_list.add("Medical box 3");
-        my_array_list.add("Medical box 4");
-        my_array_list.add("Medical box 5");
-        my_array_list.add("Medical box 6");
-        my_array_list.add("Medical box 7");
-        my_array_list.add("Medical box 8");
-
-        my_array_Adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,my_array_list);
         mlistView.setAdapter(my_array_Adapter);
 
         //detecting click on list items
@@ -113,15 +134,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int item_position, long id) {
                 //Toast.makeText(MainActivity.this, my_array_list.get(position)+ " clicked", Toast.LENGTH_SHORT).show();
 
-
-
                 Intent i = new Intent(MainActivity.this, Routine_Intake_Box.class);
-                String titlename = my_array_list.get(item_position);
-                // on below line we are passing
-                // data to our new activity.
-                i.putExtra("Title name", titlename);
 
-
+                i.putExtra("Medbox", my_array_list.get(item_position));
                 startActivity(i);
 
 
@@ -177,8 +192,14 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String text = input.getText().toString();
-                my_array_list.add(text);
+                String name = input.getText().toString();
+
+                //Creating Medbox object
+                MedBox medBox=new MedBox();
+                medBox.setName(name);
+
+                //Adding Medbox to the ArrayList
+                my_array_list.add(medBox);
                 my_array_Adapter.notifyDataSetChanged();
                 // Do something with the entered text
             }

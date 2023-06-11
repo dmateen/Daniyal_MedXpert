@@ -7,11 +7,21 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/application_logo"
+        android:requestLegacyExternalStorage="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Daniyal_MedXpert_Custom"
         tools:targetApi="31">
+        <activity
+            android:name=".patient.LabReports"
+            android:exported="false">
+
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".patient.Prescription"
             android:exported="false">
@@ -29,7 +39,6 @@
         <activity
             android:name=".patient.onBorading"
             android:exported="false">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -37,9 +46,6 @@
         <activity
             android:name=".patient.signup"
             android:exported="false">
-
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -48,9 +54,6 @@
             android:name=".patient.OTP"
             android:exported="false"
             android:theme="@style/Theme.Daniyal_MedXpert_Custom">
-
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -60,20 +63,17 @@
             android:exported="true"
             android:theme="@style/Theme.Daniyal_MedXpert_Custom">
 
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
-
-
         <activity
             android:name=".patient.SendPharmacy"
             android:exported="false"
@@ -85,8 +85,6 @@
         <activity
             android:name=".patient.medicalrecordLayout2"
             android:exported="false">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -94,18 +92,10 @@
         <activity
             android:name=".patient.PrescriptionList"
             android:exported="false">
-
-
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
-
-
         <activity
             android:name=".patient.Routine_Intake_Box"
             android:exported="false">
@@ -116,8 +106,6 @@
         <activity
             android:name=".patient.dashboard"
             android:exported="false">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -125,18 +113,11 @@
         <activity
             android:name=".patient.MainActivity"
             android:exported="false"
-            android:label="@string/app_name"
-            >
-
-
+            android:label="@string/app_name">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
-
-
 
         <meta-data
             android:name="preloaded_fonts"

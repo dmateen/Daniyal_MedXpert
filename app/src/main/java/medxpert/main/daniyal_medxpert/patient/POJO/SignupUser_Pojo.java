@@ -10,6 +10,7 @@ public class SignupUser_Pojo {
     private String countryCode;
     private String phoneNumber;
     private String password;
+    private String []Medbox;
 
     public SignupUser_Pojo(String firstName, String lastName, String cnic, String dateOfBirth, String gender,
                            String countryCode, String phoneNumber, String password) {

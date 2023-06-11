@@ -2,6 +2,7 @@ package medxpert.main.daniyal_medxpert.patient.RecyclerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +13,21 @@ import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import medxpert.main.daniyal_medxpert.patient.POJO.RoutineIntake_Pojo;
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.patient.POJO.medBoxContents_Pojo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.viewHolder>{
     private Context context;
 
-    private ArrayList<RoutineIntake_Pojo> Medicinelist;
+    private List<medBoxContents_Pojo> Medicinelist;
 
     private View.OnClickListener addClickListener;
     private View.OnClickListener minusClickListener;
     private View.OnClickListener deleteClickListener;
 
-    public MedicineAdapter(Context context, ArrayList<RoutineIntake_Pojo> medlist)
+    public MedicineAdapter(Context context, List<medBoxContents_Pojo> medlist)
     {
         this.context=context;
         this.Medicinelist =medlist;
@@ -44,9 +45,9 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.viewHo
 
     @Override
 public void onBindViewHolder(@NonNull MedicineAdapter.viewHolder holder, @SuppressLint("RecyclerView") int position) {
-    RoutineIntake_Pojo obj = Medicinelist.get(position);
+        medBoxContents_Pojo obj = Medicinelist.get(position);
     holder.MedicineName.setText(obj.getMedicinename());
-    holder.Quantity.setText(String.valueOf(obj.getQuantity()));
+    holder.Quantity.setText(obj.getQuantity());
 
 //     TODO handling click events a success
 
