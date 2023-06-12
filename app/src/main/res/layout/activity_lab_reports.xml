@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_bold"
-            android:text="Send to Pharmacy"
+            android:text="Lab Reports"
             android:textColor="@color/black"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold" />
@@ -36,6 +36,17 @@
         android:layout_below="@id/toolbar"
 
         android:padding="@dimen/_12sdp">
+
+        <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

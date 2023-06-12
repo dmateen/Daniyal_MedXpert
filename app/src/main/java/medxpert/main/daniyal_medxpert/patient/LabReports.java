@@ -96,32 +96,49 @@ public class LabReports extends AppCompatActivity {
 
 
         Db_HandlerLabTest db_Handler = new Db_HandlerLabTest("Reports");
-        db_Handler.getReports(this, new Db_HandlerLabTest.OnReportsRetrievedListener() {
+//        db_Handler.getReports(this, new Db_HandlerLabTest.OnReportsRetrievedListener() {
+//            @Override
+//            public void onReportsRetrieved(List<String> reportIds) {
+//                reportId = reportIds;
+//                Toast.makeText(LabReports.this, reportId.toString(), Toast.LENGTH_SHORT).show();
+//
+//                db_Handler.getAllReportsForPatient(LabReports.this, reportIds, new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
+//                    @Override
+//                    public void onReportObjectsRetrieved(List<Report> reports) {
+//                        reportList.clear();
+//                        reportList.addAll(reports);
+//
+//                        Toast.makeText(LabReports.this, reports.toString(), Toast.LENGTH_SHORT).show();
+//                        labReport_Adapter.notifyDataSetChanged();
+//                    }
+//
+//                    @Override
+//                    public void onReportObjectsFailed(String errorMessage) {
+//
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onReportsRetrievalFailed(String errorMessage) {
+//                // Handle the failure case
+//            }
+//        });
+
+        db_Handler.getReportsForCNIC(new SessionManager(this).getCNIC(), new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
             @Override
-            public void onReportsRetrieved(List<String> reportIds) {
-                reportId = reportIds;
-                Toast.makeText(LabReports.this, reportId.toString(), Toast.LENGTH_SHORT).show();
+            public void onReportObjectsRetrieved(List<Report> reports) {
+                reportList.clear();
+                reportList.addAll(reports);
 
-                db_Handler.getAllReportsForPatient(LabReports.this, reportIds, new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
-                    @Override
-                    public void onReportObjectsRetrieved(List<Report> reports) {
-                        reportList.clear();
-                        reportList.addAll(reports);
-
-                        Toast.makeText(LabReports.this, reports.toString(), Toast.LENGTH_SHORT).show();
-                        labReport_Adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onReportObjectsFailed(String errorMessage) {
-
-                    }
-                });
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                Toast.makeText(LabReports.this, reports.toString(), Toast.LENGTH_SHORT).show();
+                labReport_Adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onReportsRetrievalFailed(String errorMessage) {
-                // Handle the failure case
+            public void onReportObjectsFailed(String errorMessage) {
+
             }
         });
 
@@ -173,6 +190,7 @@ public class LabReports extends AppCompatActivity {
                 else {
                     report.setName(nameEditText.getText().toString());
                     report.setDate(dateInputLayout.getEditText().getText().toString());
+                    report.setPatientCNIC(new SessionManager(LabReports.this).getCNIC());
 
                     //Conveting bitmap to encoded string
                     Bitmap bitmap = getBitmapFromUri(uri); // Your Bitmap object
