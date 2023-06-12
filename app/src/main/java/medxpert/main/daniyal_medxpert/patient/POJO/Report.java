@@ -5,7 +5,16 @@ import android.graphics.Bitmap;
 public class Report {
     private String name;
     private String date;
-    private Bitmap image;
+    private String image;
+    private String patientCNIC;
+
+    public String getPatientCNIC() {
+        return patientCNIC;
+    }
+
+    public void setPatientCNIC(String patientCNIC) {
+        this.patientCNIC = patientCNIC;
+    }
 
     @Override
     public String toString() {
@@ -32,11 +41,11 @@ public class Report {
         this.date = date;
     }
 
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

@@ -1,7 +1,10 @@
 package medxpert.main.daniyal_medxpert.patient.POJO;
 
-public class SignupUser_Pojo {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Patient implements Serializable {
     private String firstName;
     private String lastName;
     private String cnic;
@@ -10,20 +13,30 @@ public class SignupUser_Pojo {
     private String countryCode;
     private String phoneNumber;
     private String password;
+    private List labReports;
 
-
-    public SignupUser_Pojo(String firstName, String lastName, String cnic, String dateOfBirth, String gender,
-                           String countryCode, String phoneNumber, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cnic = cnic;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.countryCode = countryCode;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+    public void addReport(String p){
+        labReports.add(p);
     }
 
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", cnic='" + cnic + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender='" + gender + '\'' +
+                ", countryCode='" + countryCode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", labReports=" + labReports +
+                '}';
+    }
+
+    public void removeReport(String p){
+        labReports.remove(p);
+    }
 
     public String getFirstName() {
         return firstName;
@@ -87,5 +100,13 @@ public class SignupUser_Pojo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List getLabReports() {
+        return labReports;
+    }
+
+    public void setLabReports(ArrayList labReports) {
+        this.labReports = labReports;
     }
 }

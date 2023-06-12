@@ -3,6 +3,8 @@ package medxpert.main.daniyal_medxpert.patient.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +58,13 @@ public class LabReport_Adapter extends RecyclerView.Adapter<LabReport_Adapter.Re
                 View dialogView = inflater.inflate(R.layout.lab_image_dialog_layout, null);
 
                 ImageView imageView=dialogView.findViewById(R.id.imageViewLabReport);
+
                 // Set the bitmap for the ImageView
-                Bitmap bitmap = report.getImage();
+                String encodedBitmap =report.getImage(); // Your encoded Bitmap string
+                byte[] byteArray = Base64.decode(encodedBitmap, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
+
                 imageView.setImageBitmap(bitmap);
 
                 builder.setView(dialogView);
