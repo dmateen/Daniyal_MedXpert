@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
 import medxpert.main.daniyal_medxpert.patient.Adapters.Adapter_Medicine;
 import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
 import medxpert.main.daniyal_medxpert.R;
@@ -19,11 +20,17 @@ import medxpert.main.daniyal_medxpert.R;
 import medxpert.main.daniyal_medxpert.patient.SendPharmacy;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Medicines_Fragment extends Fragment {
 
     RecyclerView recyclerView;
+    List<MedicineModel_doctor> list ;
+
+    public Medicines_Fragment(List<MedicineModel_doctor> incomingList){
+        list=incomingList;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,14 +42,14 @@ public class Medicines_Fragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerview1);
 
-        ArrayList<MedicineModel> list = new ArrayList<>();
-        list.add(new MedicineModel("Panadol (10mg)", "1","1", "1", "4 days", "2 hours after meal"));
-        list.add(new MedicineModel("Amoxil", "0","1", "1", "4 days", "2 hours after meal"));
-        list.add(new MedicineModel("brufin", "1","1", "1", "4 days", "2 hours after meal"));
-        list.add(new MedicineModel("imodium", "4","1", "1", "4 days", "2 hours after meal"));
-        list.add(new MedicineModel("leflox", "1","1", "1", "4 days", "2 hours after meal"));
-        list.add(new MedicineModel("coldrex", "1","1", "1", "4 days", "2 hours after meal"));
-        list.add(new MedicineModel("ceridal", "1","1", "1", "4 days", "2 hours after meal"));
+
+//        list.add(new MedicineModel("Panadol (10mg)", "1","1", "1", "4 days", "2 hours after meal"));
+//        list.add(new MedicineModel("Amoxil", "0","1", "1", "4 days", "2 hours after meal"));
+//        list.add(new MedicineModel("brufin", "1","1", "1", "4 days", "2 hours after meal"));
+//        list.add(new MedicineModel("imodium", "4","1", "1", "4 days", "2 hours after meal"));
+//        list.add(new MedicineModel("leflox", "1","1", "1", "4 days", "2 hours after meal"));
+//        list.add(new MedicineModel("coldrex", "1","1", "1", "4 days", "2 hours after meal"));
+//        list.add(new MedicineModel("ceridal", "1","1", "1", "4 days", "2 hours after meal"));
 
 
 
@@ -56,7 +63,7 @@ public class Medicines_Fragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<MedicineModel> selectedItems = adapter.getSelectedItems();
+                ArrayList<MedicineModel_doctor> selectedItems = adapter.getSelectedItems();
 
 
 

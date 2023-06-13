@@ -91,7 +91,7 @@ public class LabReports extends AppCompatActivity {
         recyclerView.setAdapter(labReport_Adapter);
 
 
-        Db_HandlerLabTest db_Handler = new Db_HandlerLabTest("Reports");
+
 //        db_Handler.getReports(this, new Db_HandlerLabTest.OnReportsRetrievedListener() {
 //            @Override
 //            public void onReportsRetrieved(List<String> reportIds) {
@@ -121,6 +121,8 @@ public class LabReports extends AppCompatActivity {
 //            }
 //        });
 
+
+        Db_HandlerLabTest db_Handler = new Db_HandlerLabTest("Reports");
         db_Handler.getReportsForCNIC(new SessionManager(this).getCNIC(), new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
             @Override
             public void onReportObjectsRetrieved(List<Report> reports) {

@@ -22,14 +22,14 @@ import medxpert.main.daniyal_medxpert.doctor.Database.doctor_Db_Handler;
 import medxpert.main.daniyal_medxpert.doctor.Fragments.MedicinesFragmentDoctor;
 import medxpert.main.daniyal_medxpert.doctor.Fragments.NotesFragmentDoctor;
 import medxpert.main.daniyal_medxpert.doctor.Fragments.VitalsFragmentDoctor;
-import medxpert.main.daniyal_medxpert.doctor.POJO.Prescription;
+import medxpert.main.daniyal_medxpert.doctor.POJO.Prescription_Model;
 import medxpert.main.daniyal_medxpert.doctor.SessionManager.SessionManager;
 
 public class Layout1 extends AppCompatActivity {
 
     LinearLayout linearLayout;
     Button medicine, vitals, notes;
-    Prescription prescription;
+    Prescription_Model prescription;
     List<MedicineModel_doctor> Medicines;
     List<Model_Vitals_Doctor> Vitals;
     List<Model_Notes_Doctor> Notes;
@@ -48,12 +48,13 @@ public class Layout1 extends AppCompatActivity {
         notesFragmentDoctor = new NotesFragmentDoctor();
 
         //Getting Data from Intent
-        Intent previousIntent=new Intent();
+        Intent previousIntent=getIntent();
         String patientCnic=previousIntent.getStringExtra("patientCNIC");
+        Toast.makeText(this, patientCnic, Toast.LENGTH_SHORT).show();
 
         //Creating Object
         SessionManager sessionManager=new SessionManager(this);
-        prescription=new Prescription();
+        prescription=new Prescription_Model();
         Medicines=new ArrayList<MedicineModel_doctor>();
         Vitals=new ArrayList<>();
         Notes=new ArrayList<>();
@@ -160,8 +161,22 @@ public class Layout1 extends AppCompatActivity {
         return formattedDate;
     }
 
-//    void TestFunction(Prescription prescription){
-//        Prescription testPrescription=prescription;
+
+    public void onClickAddPrescriptionBtn(View view){
+        if(Medicines.size()==0 || Vitals.size()==0 || Notes.size()==0){
+            Toast.makeText(this, "Add atleast one Medicine, Vital and Note", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        doctor_Db_Handler db_handler=new doctor_Db_Handler("prescriptions");
+        db_handler.addPrescription(prescription);
+
+        startActivity(new Intent(Layout1.this,doctor_dashboard.class));
+
+
+    }
+//    void TestFunction(Prescription_Model prescription){
+//        Prescription_Model testPrescription=prescription;
 //        List<MedicineModel_doctor> MedicinesTest = new ArrayList<>();
 //        List<Model_Vitals_Doctor> VitalsTest=new ArrayList<>();
 //        List<Model_Notes_Doctor> NotesTest=new ArrayList<>();

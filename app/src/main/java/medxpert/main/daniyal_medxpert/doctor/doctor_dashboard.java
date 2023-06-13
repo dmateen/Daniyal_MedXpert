@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -40,6 +41,7 @@ public class doctor_dashboard extends AppCompatActivity {
                 {
                     Intent intent=new Intent(doctor_dashboard.this,Layout1.class);
                     intent.putExtra("patientCNIC",cnic);
+                    Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
 

@@ -43,15 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//
-//        // using toolbar as ActionBar
-//        setSupportActionBar(toolbar);
-//
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        //getSupportActionBar().setTitle(0);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //Data store from DB in my_array_list
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -138,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
                 i.putExtra("Medbox", my_array_list.get(item_position));
                 startActivity(i);
+                //MedBox {id,Name,cnic, List}
 
 
             }

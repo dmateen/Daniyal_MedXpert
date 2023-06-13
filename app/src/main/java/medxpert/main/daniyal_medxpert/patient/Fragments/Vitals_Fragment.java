@@ -10,16 +10,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
+import medxpert.main.daniyal_medxpert.doctor.Model_Vitals_Doctor;
 import medxpert.main.daniyal_medxpert.patient.Adapters.Adapter_Vitals;
 import medxpert.main.daniyal_medxpert.patient.ModelVitals.VitalsModel;
 import medxpert.main.daniyal_medxpert.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Vitals_Fragment extends Fragment {
 
     RecyclerView recyclerView;
+
+    List<Model_Vitals_Doctor> list;
+
+    public Vitals_Fragment(List<Model_Vitals_Doctor> incomingList){
+        list=incomingList;
+    }
 
 
     @Override
@@ -29,12 +38,7 @@ public class Vitals_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_vitals, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerviewVitals);
-        ArrayList<VitalsModel> list = new ArrayList<>();
 
-        list.add(new VitalsModel("Heart Rate", "125"));
-        list.add(new VitalsModel("Blood Pressure", "78"));
-        list.add(new VitalsModel("Blood Sugar Level checking system", "51"));
-        list.add(new VitalsModel("Temperature", "23"));
 
         Adapter_Vitals adapter = new Adapter_Vitals(list, getContext());
         recyclerView.setAdapter(adapter);

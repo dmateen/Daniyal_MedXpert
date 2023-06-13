@@ -11,18 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.doctor.POJO.Prescription_Model;
+import medxpert.main.daniyal_medxpert.patient.Prescription;
 import medxpert.main.daniyal_medxpert.patient.medicalrecordLayout2;
-import medxpert.main.daniyal_medxpert.patient.medicalrecordlayout1model;
 
 public class Adapter_medicalrecordlayout1 extends RecyclerView.Adapter<Adapter_medicalrecordlayout1.viewHolder> {
 
-    ArrayList<medicalrecordlayout1model> list;
+    List<Prescription_Model> list;
     Context context;
 
-    public Adapter_medicalrecordlayout1(ArrayList<medicalrecordlayout1model> list, Context context) {
+    public Adapter_medicalrecordlayout1(List<Prescription_Model> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,10 +39,10 @@ public class Adapter_medicalrecordlayout1 extends RecyclerView.Adapter<Adapter_m
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        medicalrecordlayout1model model = list.get(position);
+        Prescription_Model model = list.get(position);
 
 //        holder.description.setText(model.getDescription());
-        holder.name.setText(model.getName());
+        holder.name.setText(model.getDoctorName());
         holder.designation.setText(model.getDesignation());
         holder.date.setText(model.getDate());
 
@@ -47,9 +50,12 @@ public class Adapter_medicalrecordlayout1 extends RecyclerView.Adapter<Adapter_m
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, medicalrecordLayout2.class);
-                intent.putExtra("Name", model.getName());
+                intent.putExtra("Name", model.getDoctorName());
                 intent.putExtra("Designation", model.getDesignation());
                 intent.putExtra("Date", model.getDate());
+                intent.putExtra("Medicines", (Serializable) model.getMedicines());
+                intent.putExtra("Vitals", (Serializable) model.getVitals());
+                intent.putExtra("Notes", (Serializable) model.getNotes());
                 context.startActivity(intent);
 
             }
