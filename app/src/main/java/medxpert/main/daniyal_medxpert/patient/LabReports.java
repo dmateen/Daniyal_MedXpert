@@ -22,7 +22,6 @@ import android.os.Bundle;
 
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +33,6 @@ import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DatabaseError;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -43,9 +41,7 @@ import java.util.List;
 
 import medxpert.main.daniyal_medxpert.R;
 import medxpert.main.daniyal_medxpert.patient.Adapters.LabReport_Adapter;
-import medxpert.main.daniyal_medxpert.patient.Database.Db_Handler;
 import medxpert.main.daniyal_medxpert.patient.Database.Db_HandlerLabTest;
-import medxpert.main.daniyal_medxpert.patient.POJO.Patient;
 import medxpert.main.daniyal_medxpert.patient.POJO.Report;
 import medxpert.main.daniyal_medxpert.patient.SessionManager.SessionManager;
 

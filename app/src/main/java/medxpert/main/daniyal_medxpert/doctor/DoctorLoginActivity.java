@@ -1,7 +1,8 @@
-package medxpert.main.daniyal_medxpert.patient;
+package medxpert.main.daniyal_medxpert.doctor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -11,13 +12,15 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import medxpert.main.daniyal_medxpert.patient.Database.Db_Handler;
 import medxpert.main.daniyal_medxpert.R;
-import medxpert.main.daniyal_medxpert.patient.SessionManager.SessionManager;
+import medxpert.main.daniyal_medxpert.doctor.Database.doctor_Db_Handler;
+import medxpert.main.daniyal_medxpert.doctor.SessionManager.SessionManager;
 
-public class login extends AppCompatActivity {
 
-    private Db_Handler dbHandler;
+
+public class DoctorLoginActivity extends AppCompatActivity {
+
+    private doctor_Db_Handler dbHandler;
 
     TextInputLayout cnicLayout;
     TextInputLayout passwordLayout;
@@ -28,17 +31,14 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_doctor_login);
 
         //Getting data about session
         SessionManager sessionManager= new SessionManager(this);
         Toast.makeText(this, String.valueOf(sessionManager.isLoggedIn()), Toast.LENGTH_SHORT).show();
-//if(sessionManager.getCNIC()==null)
-//    Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
-//else
-//    Toast.makeText(this, sessionManager.getCNIC(), Toast.LENGTH_SHORT).show();
+
         if(sessionManager.isLoggedIn())
-            startActivity(new Intent(this, dashboard.class));
+            startActivity(new Intent(this, doctor_dashboard.class));
 
 
         //Showing back button on toolbar
@@ -63,7 +63,7 @@ public class login extends AppCompatActivity {
         password = passwordLayout.getEditText().getText().toString().trim();
 
         if (cnic.isEmpty() || password.isEmpty()) {
-            Toast.makeText(login.this, "Please enter CNIC and password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DoctorLoginActivity.this, "Please enter CNIC and password", Toast.LENGTH_SHORT).show();
         } else {
             performLogin(cnic, password);
         }
@@ -71,20 +71,20 @@ public class login extends AppCompatActivity {
     }
 
     public void registerBtnClicked(View view){
-        startActivity(new Intent(this,signup.class));
+        startActivity(new Intent(this, DoctorSignupActivity.class));
     }
 
     private void performLogin(String cnic, String password) {
-        dbHandler = new Db_Handler("patients");
-        dbHandler.login(cnic, password, this, new Db_Handler.LoginCallback() {
+        dbHandler = new doctor_Db_Handler("doctors");
+        dbHandler.login(cnic, password, this, new doctor_Db_Handler.LoginCallback() {
             @Override
             public void onLoginSuccess() {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(login.this, "Logged In", Toast.LENGTH_SHORT).show();
-                        new SessionManager(login.this).setLoggedIn(true,cnic,password,"patient");
-                        startActivity(new Intent(login.this, dashboard.class));
+                        Toast.makeText(DoctorLoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                        //Session Managed in DBHandler
+                        startActivity(new Intent(DoctorLoginActivity.this, doctor_dashboard.class));
                     }
                 });
             }
@@ -94,7 +94,7 @@ public class login extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(login.this, "CNIC or Password not correct", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DoctorLoginActivity.this, "CNIC or Password not correct", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

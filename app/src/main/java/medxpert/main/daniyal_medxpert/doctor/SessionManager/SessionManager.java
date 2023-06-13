@@ -1,4 +1,4 @@
-package medxpert.main.daniyal_medxpert.patient.SessionManager;
+package medxpert.main.daniyal_medxpert.doctor.SessionManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +9,8 @@ public class SessionManager {
     private static final String KEY_CNIC = "CNIC";
     private static final String KEY_password = "PASSWORD";
     private static final String KEY_USERTYPE="USERTYPE";
+    private static final String KEY_DOCTORNAME="NAME";
+    private static final String KEY_DOCTORSPECIALIZATION="SPECIALIZATION";
 
 
     private SharedPreferences sharedPreferences;
@@ -21,16 +23,26 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void setLoggedIn(boolean isLoggedIn,String cnic, String password,String user) {
+    public void setLoggedIn(boolean isLoggedIn,String cnic, String password,String user,String name,String specialization) {
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
         editor.putString(KEY_CNIC,cnic);
         editor.putString(KEY_password,password);
         editor.putString(KEY_USERTYPE,user);
+        editor.putString(KEY_DOCTORNAME,name);
+        editor.putString(KEY_DOCTORSPECIALIZATION,specialization);
         editor.apply();
     }
 
     public String getUser(){
         return sharedPreferences.getString(KEY_USERTYPE,null);
+    }
+
+    public String getDoctorName(){
+        return sharedPreferences.getString(KEY_DOCTORNAME,null);
+    }
+
+    public String getDoctorSpecialization(){
+        return sharedPreferences.getString(KEY_DOCTORSPECIALIZATION,null);
     }
 
     public String getCNIC(){
@@ -45,4 +57,3 @@ public class SessionManager {
         return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false);
     }
 }
-
