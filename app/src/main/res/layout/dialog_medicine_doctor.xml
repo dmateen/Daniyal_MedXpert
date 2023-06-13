@@ -89,18 +89,21 @@
                         android:id="@+id/quantitymorningdocMedicineLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:hint="2" />
 
                     <EditText
                         android:id="@+id/quantityeveningdocMedicineLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:hint="2" />
 
                     <EditText
                         android:id="@+id/quantitynightdocMedicineLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:hint="2" />
                 </LinearLayout>
             </LinearLayout>
@@ -125,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="12 days"
+                    android:inputType="number"
                     android:textColor="#040404"
                     />
             </LinearLayout>

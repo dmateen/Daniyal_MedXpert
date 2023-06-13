@@ -9,17 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import medxpert.main.daniyal_medxpert.doctor.Model_Notes_Doctor;
 import medxpert.main.daniyal_medxpert.patient.ModelNotes.NotesModel;
 
 import medxpert.main.daniyal_medxpert.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter_Notes extends RecyclerView.Adapter<Adapter_Notes.ViewHolder> {
-    private ArrayList<NotesModel> notesList;
+    private List<Model_Notes_Doctor> notesList;
     private Context context;
 
-    public Adapter_Notes(ArrayList<NotesModel> notesList, Context context) {
+    public Adapter_Notes(List<Model_Notes_Doctor> notesList, Context context) {
         this.notesList = notesList;
         this.context = context;
     }
@@ -33,9 +35,9 @@ public class Adapter_Notes extends RecyclerView.Adapter<Adapter_Notes.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        NotesModel note = notesList.get(position);
+        Model_Notes_Doctor note = notesList.get(position);
 
-        holder.heading.setText(note.getHeading());
+        holder.heading.setText(note.getHeadingNotes());
         holder.descriptionforNotes.setText(note.getDescriptionNotes());
     }
 

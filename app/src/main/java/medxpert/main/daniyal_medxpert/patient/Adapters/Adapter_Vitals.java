@@ -9,17 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import medxpert.main.daniyal_medxpert.doctor.Model_Vitals_Doctor;
 import medxpert.main.daniyal_medxpert.patient.ModelVitals.VitalsModel;
 import medxpert.main.daniyal_medxpert.R;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter_Vitals extends RecyclerView.Adapter<Adapter_Vitals.ViewHolder> {
-    private ArrayList<VitalsModel> vitalsList;
+    private List<Model_Vitals_Doctor> vitalsList;
     private Context context;
 
-    public Adapter_Vitals(ArrayList<VitalsModel> vitalsList, Context context) {
+    public Adapter_Vitals(List<Model_Vitals_Doctor> vitalsList, Context context) {
         this.vitalsList = vitalsList;
         this.context = context;
     }
@@ -33,9 +35,9 @@ public class Adapter_Vitals extends RecyclerView.Adapter<Adapter_Vitals.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        VitalsModel vitals = vitalsList.get(position);
+        Model_Vitals_Doctor vitals = vitalsList.get(position);
 
-        holder.nameOfVitals.setText(vitals.getNameOfVitals());
+        holder.nameOfVitals.setText(vitals.getNameOfvitals());
         holder.valueOfVitals.setText(vitals.getValueOfVitals());
 
     }

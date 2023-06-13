@@ -6,7 +6,7 @@ import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
 import medxpert.main.daniyal_medxpert.doctor.Model_Notes_Doctor;
 import medxpert.main.daniyal_medxpert.doctor.Model_Vitals_Doctor;
 
-public class Prescription {
+public class Prescription_Model {
     private String patientCNIC;
     private String doctorCNIC;
     private String date;
@@ -17,6 +17,22 @@ public class Prescription {
     private List<Model_Notes_Doctor> Notes;
 
     // Getter and setter methods
+
+
+    public Prescription_Model(String patientCNIC, String doctorCNIC, String date, String doctorName, String designation, List<MedicineModel_doctor> medicines, List<Model_Vitals_Doctor> vitals, List<Model_Notes_Doctor> notes) {
+        this.patientCNIC = patientCNIC;
+        this.doctorCNIC = doctorCNIC;
+        this.date = date;
+        this.doctorName = doctorName;
+        this.designation = designation;
+        Medicines = medicines;
+        Vitals = vitals;
+        Notes = notes;
+    }
+
+    public Prescription_Model(){
+
+    }
 
     public String getPatientCNIC() {
         return patientCNIC;

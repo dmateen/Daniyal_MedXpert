@@ -1,12 +1,18 @@
 package medxpert.main.daniyal_medxpert.doctor;
 
-public class Model_Notes_Doctor {
+import java.io.Serializable;
+
+public class Model_Notes_Doctor implements Serializable {
 
     String headingNotes, descriptionNotes;
 
     public Model_Notes_Doctor(String headingNotes, String descriptionNotes) {
         this.headingNotes = headingNotes;
         this.descriptionNotes = descriptionNotes;
+    }
+
+    public Model_Notes_Doctor() {
+
     }
 
     public String getHeadingNotes() {

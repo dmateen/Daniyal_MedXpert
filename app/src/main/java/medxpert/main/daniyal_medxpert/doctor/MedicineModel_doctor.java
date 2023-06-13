@@ -15,6 +15,10 @@ public class MedicineModel_doctor implements Serializable {
         this.direction = direction;
     }
 
+    public MedicineModel_doctor() {
+
+    }
+
 
     public boolean isSelected() {
         return isSelected;

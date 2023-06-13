@@ -1,11 +1,17 @@
 package medxpert.main.daniyal_medxpert.doctor;
 
-public class Model_Vitals_Doctor {
+import java.io.Serializable;
+
+public class Model_Vitals_Doctor implements Serializable {
     String nameOfvitals, valueOfVitals;
 
     public Model_Vitals_Doctor(String nameOfvitals, String valueOfVitals) {
         this.nameOfvitals = nameOfvitals;
         this.valueOfVitals = valueOfVitals;
+    }
+
+    public Model_Vitals_Doctor() {
+
     }
 
     public String getNameOfvitals() {

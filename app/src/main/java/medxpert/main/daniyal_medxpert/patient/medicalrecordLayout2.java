@@ -11,7 +11,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
+import medxpert.main.daniyal_medxpert.doctor.Model_Notes_Doctor;
+import medxpert.main.daniyal_medxpert.doctor.Model_Vitals_Doctor;
 import medxpert.main.daniyal_medxpert.patient.Fragments.Medicines_Fragment;
 import medxpert.main.daniyal_medxpert.patient.Fragments.Notes_Fragment;
 import medxpert.main.daniyal_medxpert.patient.Fragments.Vitals_Fragment;
@@ -37,6 +43,9 @@ public class medicalrecordLayout2 extends AppCompatActivity {
         String name = intent.getStringExtra("Name");
         String designation = intent.getStringExtra("Designation");
         String date = intent.getStringExtra("Date");
+        List<MedicineModel_doctor> Medicines=(ArrayList<MedicineModel_doctor>) getIntent().getSerializableExtra("Medicines");
+        List<Model_Vitals_Doctor> Vitals= (ArrayList<Model_Vitals_Doctor>) getIntent().getSerializableExtra("Vitals");
+        List<Model_Notes_Doctor> Notes= (ArrayList<Model_Notes_Doctor>) getIntent().getSerializableExtra("Notes");
 
 
         //Populating Details about Doctor
@@ -48,8 +57,12 @@ public class medicalrecordLayout2 extends AppCompatActivity {
         textView3.setText(date);
 
 
+        //Creating Fragments
+        Medicines_Fragment medicineFragment = new Medicines_Fragment(Medicines);
+        Vitals_Fragment vitalsFragment = new Vitals_Fragment(Vitals);
+        Notes_Fragment notesFragment = new Notes_Fragment(Notes);
+
         //By Default displaying medicines
-        Medicines_Fragment medicineFragment = new Medicines_Fragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.linearforfragments, medicineFragment);
         transaction.commit();
@@ -65,7 +78,7 @@ public class medicalrecordLayout2 extends AppCompatActivity {
         medicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Medicines_Fragment medicineFragment = new Medicines_Fragment();
+
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.linearforfragments, medicineFragment);
                 transaction.commit();
@@ -76,7 +89,7 @@ public class medicalrecordLayout2 extends AppCompatActivity {
         vitals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vitals_Fragment vitalsFragment = new Vitals_Fragment();
+
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.linearforfragments, vitalsFragment);
                 transaction.commit();
@@ -87,7 +100,7 @@ public class medicalrecordLayout2 extends AppCompatActivity {
         notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Notes_Fragment notesFragment = new Notes_Fragment();
+
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.linearforfragments, notesFragment);
                 transaction.commit();

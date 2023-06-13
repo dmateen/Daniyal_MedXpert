@@ -7,22 +7,25 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
+
+import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import medxpert.main.daniyal_medxpert.R;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter_Medicine extends RecyclerView.Adapter<Adapter_Medicine.viewHolder>{
-    ArrayList<MedicineModel> list;
+    List<MedicineModel_doctor> list;
     Context context;
-    ArrayList<MedicineModel> selectedItems;  // ArrayList to store selected items
+    ArrayList<MedicineModel_doctor> selectedItems;  // ArrayList to store selected items
 
 
-    public Adapter_Medicine(ArrayList<MedicineModel> list, Context context) {
+    public Adapter_Medicine(List<MedicineModel_doctor> list, Context context) {
         this.list = list;
         this.context = context;
-        selectedItems = new ArrayList<>();  // Initialize the selectedItems ArrayList
+        selectedItems = new ArrayList<MedicineModel_doctor>();  // Initialize the selectedItems ArrayList
     }
 
     @NonNull
@@ -34,7 +37,7 @@ public class Adapter_Medicine extends RecyclerView.Adapter<Adapter_Medicine.view
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        MedicineModel medicineModel = list.get(position);
+        MedicineModel_doctor medicineModel = list.get(position);
 
         holder.medicineName.setText(medicineModel.getMedicineName());
         holder.morningQuantity.setText(medicineModel.getMorningQuantity());
@@ -69,7 +72,7 @@ public class Adapter_Medicine extends RecyclerView.Adapter<Adapter_Medicine.view
     public int getItemCount() {
         return list.size();
     }
-    public ArrayList<MedicineModel> getSelectedItems() {
+    public ArrayList<MedicineModel_doctor> getSelectedItems() {
         return selectedItems;
     }
 
