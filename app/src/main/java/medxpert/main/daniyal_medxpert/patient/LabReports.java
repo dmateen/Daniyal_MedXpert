@@ -22,7 +22,6 @@ import android.os.Bundle;
 
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +33,6 @@ import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DatabaseError;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -43,9 +41,7 @@ import java.util.List;
 
 import medxpert.main.daniyal_medxpert.R;
 import medxpert.main.daniyal_medxpert.patient.Adapters.LabReport_Adapter;
-import medxpert.main.daniyal_medxpert.patient.Database.Db_Handler;
 import medxpert.main.daniyal_medxpert.patient.Database.Db_HandlerLabTest;
-import medxpert.main.daniyal_medxpert.patient.POJO.Patient;
 import medxpert.main.daniyal_medxpert.patient.POJO.Report;
 import medxpert.main.daniyal_medxpert.patient.SessionManager.SessionManager;
 
@@ -96,32 +92,49 @@ public class LabReports extends AppCompatActivity {
 
 
         Db_HandlerLabTest db_Handler = new Db_HandlerLabTest("Reports");
-        db_Handler.getReports(this, new Db_HandlerLabTest.OnReportsRetrievedListener() {
+//        db_Handler.getReports(this, new Db_HandlerLabTest.OnReportsRetrievedListener() {
+//            @Override
+//            public void onReportsRetrieved(List<String> reportIds) {
+//                reportId = reportIds;
+//                Toast.makeText(LabReports.this, reportId.toString(), Toast.LENGTH_SHORT).show();
+//
+//                db_Handler.getAllReportsForPatient(LabReports.this, reportIds, new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
+//                    @Override
+//                    public void onReportObjectsRetrieved(List<Report> reports) {
+//                        reportList.clear();
+//                        reportList.addAll(reports);
+//
+//                        Toast.makeText(LabReports.this, reports.toString(), Toast.LENGTH_SHORT).show();
+//                        labReport_Adapter.notifyDataSetChanged();
+//                    }
+//
+//                    @Override
+//                    public void onReportObjectsFailed(String errorMessage) {
+//
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onReportsRetrievalFailed(String errorMessage) {
+//                // Handle the failure case
+//            }
+//        });
+
+        db_Handler.getReportsForCNIC(new SessionManager(this).getCNIC(), new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
             @Override
-            public void onReportsRetrieved(List<String> reportIds) {
-                reportId = reportIds;
-                Toast.makeText(LabReports.this, reportId.toString(), Toast.LENGTH_SHORT).show();
+            public void onReportObjectsRetrieved(List<Report> reports) {
+                reportList.clear();
+                reportList.addAll(reports);
 
-                db_Handler.getAllReportsForPatient(LabReports.this, reportIds, new Db_HandlerLabTest.OnReportObjectsRetrievedListener() {
-                    @Override
-                    public void onReportObjectsRetrieved(List<Report> reports) {
-                        reportList.clear();
-                        reportList.addAll(reports);
-
-                        Toast.makeText(LabReports.this, reports.toString(), Toast.LENGTH_SHORT).show();
-                        labReport_Adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onReportObjectsFailed(String errorMessage) {
-
-                    }
-                });
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                Toast.makeText(LabReports.this, reports.toString(), Toast.LENGTH_SHORT).show();
+                labReport_Adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onReportsRetrievalFailed(String errorMessage) {
-                // Handle the failure case
+            public void onReportObjectsFailed(String errorMessage) {
+
             }
         });
 
@@ -173,6 +186,7 @@ public class LabReports extends AppCompatActivity {
                 else {
                     report.setName(nameEditText.getText().toString());
                     report.setDate(dateInputLayout.getEditText().getText().toString());
+                    report.setPatientCNIC(new SessionManager(LabReports.this).getCNIC());
 
                     //Conveting bitmap to encoded string
                     Bitmap bitmap = getBitmapFromUri(uri); // Your Bitmap object

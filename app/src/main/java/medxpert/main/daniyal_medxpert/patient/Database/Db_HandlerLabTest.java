@@ -195,6 +195,31 @@ public class Db_HandlerLabTest {
     }
 
 
+//-----------------------------------------------------
+
+
+    public void getReportsForCNIC(String cnic, final OnReportObjectsRetrievedListener listener) {
+        DatabaseReference reportsRef = FirebaseDatabase.getInstance().getReference().child("Reports");
+
+        reportsRef.orderByChild("patientCNIC").equalTo(cnic).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Report> reportList = new ArrayList<>();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Report report = snapshot.getValue(Report.class);
+                    reportList.add(report);
+                }
+
+                listener.onReportObjectsRetrieved(reportList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                listener.onReportObjectsFailed(databaseError.getMessage());
+            }
+        });
+    }
 
 
 
