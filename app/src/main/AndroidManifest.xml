@@ -56,7 +56,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".patient.onBorading"
+            android:name=".patient.onBoarding"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -107,6 +107,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".doctor.medicalrecordLayout2_Doctor"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".doctor.Layout1"
             android:exported="false">
             <meta-data
@@ -115,6 +122,14 @@
         </activity>
         <activity
             android:name=".patient.PrescriptionList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".doctor.PrescriptionList_Doctor"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

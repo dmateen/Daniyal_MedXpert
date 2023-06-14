@@ -26,6 +26,16 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_18ssp"
         android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="logout"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:src="@drawable/ic_baseline_logout_24"
+
+            />
 </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView

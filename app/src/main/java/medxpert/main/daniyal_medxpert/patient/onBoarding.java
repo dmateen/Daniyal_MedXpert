@@ -13,7 +13,7 @@ import medxpert.main.daniyal_medxpert.doctor.DoctorLoginActivity;
 import medxpert.main.daniyal_medxpert.doctor.doctor_dashboard;
 import medxpert.main.daniyal_medxpert.patient.SessionManager.SessionManager;
 
-public class onBorading extends AppCompatActivity {
+public class onBoarding extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,10 @@ public class onBorading extends AppCompatActivity {
     }
 
     public void onPatientBtnClick(View view){
-        startActivity(new Intent(onBorading.this,login.class));
+        startActivity(new Intent(onBoarding.this,login.class));
     }
 
     public void onDoctorBtnClick(View view){
-        startActivity(new Intent(onBorading.this, DoctorLoginActivity.class));
+        startActivity(new Intent(onBoarding.this, DoctorLoginActivity.class));
     }
 }

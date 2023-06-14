@@ -1,4 +1,4 @@
-package medxpert.main.daniyal_medxpert.patient.Adapters;
+package medxpert.main.daniyal_medxpert.doctor.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +16,15 @@ import java.util.List;
 
 import medxpert.main.daniyal_medxpert.R;
 import medxpert.main.daniyal_medxpert.doctor.POJO.Prescription_Model;
+import medxpert.main.daniyal_medxpert.doctor.medicalrecordLayout2_Doctor;
 import medxpert.main.daniyal_medxpert.patient.medicalrecordLayout2;
 
-public class Adapter_medicalrecordlayout1 extends RecyclerView.Adapter<Adapter_medicalrecordlayout1.viewHolder> {
+public class Adapter_medicalrecordlayout1_doctor extends RecyclerView.Adapter<Adapter_medicalrecordlayout1_doctor.viewHolder> {
 
     List<Prescription_Model> list;
     Context context;
 
-    public Adapter_medicalrecordlayout1(List<Prescription_Model> list, Context context) {
+    public Adapter_medicalrecordlayout1_doctor(List<Prescription_Model> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -47,7 +48,7 @@ public class Adapter_medicalrecordlayout1 extends RecyclerView.Adapter<Adapter_m
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, medicalrecordLayout2.class);
+                Intent intent = new Intent(context, medicalrecordLayout2_Doctor.class);
                 intent.putExtra("Name", model.getDoctorName());
                 intent.putExtra("Designation", model.getDesignation());
                 intent.putExtra("Date", model.getDate());

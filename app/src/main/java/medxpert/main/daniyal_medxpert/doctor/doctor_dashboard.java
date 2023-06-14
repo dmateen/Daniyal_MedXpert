@@ -12,7 +12,9 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.doctor.SessionManager.SessionManager;
 import medxpert.main.daniyal_medxpert.doctor.Validations.Validation;
+import medxpert.main.daniyal_medxpert.patient.onBoarding;
 
 public class doctor_dashboard extends AppCompatActivity {
 
@@ -39,7 +41,7 @@ public class doctor_dashboard extends AppCompatActivity {
                 cnic=cnicEditText.getEditText().getText().toString();
                 if(Validation.validateCNIC(cnic,cnicEditText))
                 {
-                    Intent intent=new Intent(doctor_dashboard.this,Layout1.class);
+                    Intent intent=new Intent(doctor_dashboard.this, Layout1.class);
                     intent.putExtra("patientCNIC",cnic);
                     Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
@@ -48,7 +50,33 @@ public class doctor_dashboard extends AppCompatActivity {
             }
         });
 
+
+        Button showPrescriptionBtn= findViewById(R.id.showPrescriptions);
+
+        showPrescriptionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cnic=cnicEditText.getEditText().getText().toString();
+                if(Validation.validateCNIC(cnic,cnicEditText))
+                {
+                    Intent intent=new Intent(doctor_dashboard.this,PrescriptionList_Doctor.class);
+                    intent.putExtra("patientCNIC",cnic);
+                    Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+
+
+
+
     }
 
+    public void logout(View view){
+        new SessionManager(this).setLoggedOut();
+        startActivity(new Intent(this, onBoarding.class));
+    }
 
 }
