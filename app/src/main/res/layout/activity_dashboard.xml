@@ -124,8 +124,8 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Reminders"
-                android:textSize="@dimen/_16ssp"
+                android:text="Profile"
+                android:textSize="@dimen/_14ssp"
                 android:padding="@dimen/_12sdp"/>
 
             <ImageView

@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
 import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
 import medxpert.main.daniyal_medxpert.R;
 
@@ -19,9 +21,9 @@ public class Adapter_SendPharmacy extends RecyclerView.Adapter<Adapter_SendPharm
 
     private Context context;
 
-    private ArrayList<MedicineModel> arrayList;
+    private List<MedicineModel_doctor> arrayList;
 
-    public Adapter_SendPharmacy(Context context, ArrayList<MedicineModel> medlist)
+    public Adapter_SendPharmacy(Context context, List<MedicineModel_doctor> medlist)
     {
         this.context=context;
         this.arrayList=medlist;
@@ -38,7 +40,7 @@ public class Adapter_SendPharmacy extends RecyclerView.Adapter<Adapter_SendPharm
     @Override
     public void onBindViewHolder(@NonNull Adapter_SendPharmacy.viewHolder holder, int position) {
 
-        MedicineModel medicineModel = arrayList.get(position);
+        MedicineModel_doctor medicineModel = arrayList.get(position);
 
         holder.medicineName.setText(medicineModel.getMedicineName());
 
@@ -50,11 +52,6 @@ public class Adapter_SendPharmacy extends RecyclerView.Adapter<Adapter_SendPharm
         int totalQuantity = (morningQuantity + afternoonQuantity + eveningQuantity) * duration;
 
         holder.Quantity.setText(String.valueOf(totalQuantity));
-
-//        holder.eveningQuantity.setText(medicineModel.getEveningQuantity());
-//        holder.nightQuantity.setText(medicineModel.getNightQuantity());
-//        holder.duration.setText(medicineModel.getDuration());
-//        holder.direction.setText(medicineModel.getDirection());
 
 
     }

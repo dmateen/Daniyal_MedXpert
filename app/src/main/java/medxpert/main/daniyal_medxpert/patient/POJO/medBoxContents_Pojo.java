@@ -1,9 +1,15 @@
 package medxpert.main.daniyal_medxpert.patient.POJO;
 
-public class medBoxContents_Pojo {
+import java.io.Serializable;
+
+public class medBoxContents_Pojo implements Serializable {
 
     private String medicinename;
     private int quantity;
+
+    public medBoxContents_Pojo(){
+
+    }
     public medBoxContents_Pojo(String Medicinename, int Quantity)
     {
         this.medicinename=Medicinename;

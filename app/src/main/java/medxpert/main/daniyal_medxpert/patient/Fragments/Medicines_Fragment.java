@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
 import medxpert.main.daniyal_medxpert.patient.Adapters.Adapter_Medicine;
+import medxpert.main.daniyal_medxpert.patient.MainActivity;
 import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
 import medxpert.main.daniyal_medxpert.R;
 
@@ -36,20 +37,13 @@ public class Medicines_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ArrayList<MedicineModel> selectedItems = new ArrayList<>(); //to detect checked medicines
+        ArrayList<MedicineModel_doctor> selectedItems = new ArrayList<>(); //to detect checked medicines
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_medicines, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview1);
 
 
-//        list.add(new MedicineModel("Panadol (10mg)", "1","1", "1", "4 days", "2 hours after meal"));
-//        list.add(new MedicineModel("Amoxil", "0","1", "1", "4 days", "2 hours after meal"));
-//        list.add(new MedicineModel("brufin", "1","1", "1", "4 days", "2 hours after meal"));
-//        list.add(new MedicineModel("imodium", "4","1", "1", "4 days", "2 hours after meal"));
-//        list.add(new MedicineModel("leflox", "1","1", "1", "4 days", "2 hours after meal"));
-//        list.add(new MedicineModel("coldrex", "1","1", "1", "4 days", "2 hours after meal"));
-//        list.add(new MedicineModel("ceridal", "1","1", "1", "4 days", "2 hours after meal"));
 
 
 
@@ -59,6 +53,7 @@ public class Medicines_Fragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+
         Button btn = view.findViewById(R.id.sendpharmacy);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,24 +66,25 @@ public class Medicines_Fragment extends Fragment {
                 Intent intent = new Intent(getActivity(), SendPharmacy.class);
                 intent.putExtra("SelectedItems", selectedItems);
                 startActivity(intent);
-//                intent.putParcelableArrayListExtra("selectedItems", (ArrayList<? extends Parcelable>) selectedItems);
-//
-//                startActivity(intent);
+
             }
         });
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//        recyclerView.setLayoutManager(linearLayoutManager);
+
+        Button add_to_Medbox_btn = view.findViewById(R.id.addtomed);
+        add_to_Medbox_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<MedicineModel_doctor> AddtoMedBox = adapter.getSelectedItems();
 
 
-//        Button btn = view.findViewById(R.id.sendpharmacy);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), SendPharmacy.class);
-//                startActivity(intent);
-//            }
-//        });
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra("SelectedItems", AddtoMedBox);
+                intent.putExtra("coming_from_medical_record",true);
+                startActivity(intent);
+
+            }
+        });
+
 
         return view;
     }
