@@ -56,6 +56,8 @@ public class Medicines_Fragment extends Fragment {
 
 
 
+
+
         return view;
     }
 }

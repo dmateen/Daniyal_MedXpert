@@ -47,7 +47,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.viewHo
 public void onBindViewHolder(@NonNull MedicineAdapter.viewHolder holder, @SuppressLint("RecyclerView") int position) {
         medBoxContents_Pojo obj = Medicinelist.get(position);
     holder.MedicineName.setText(obj.getMedicinename());
-    holder.Quantity.setText(obj.getQuantity());
+    holder.Quantity.setText(String.valueOf(obj.getQuantity()));
 
 //     TODO handling click events a success
 

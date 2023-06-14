@@ -10,6 +10,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.doctor.MedicineModel_doctor;
 import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
 import medxpert.main.daniyal_medxpert.patient.Adapters.Adapter_SendPharmacy;
 
@@ -27,7 +28,7 @@ public class SendPharmacy extends AppCompatActivity
 
         Intent intent = getIntent();
 
-        ArrayList<MedicineModel> SelectedItems = (ArrayList<MedicineModel>) intent.getSerializableExtra("SelectedItems");
+        ArrayList<MedicineModel_doctor> SelectedItems = (ArrayList<MedicineModel_doctor>) intent.getSerializableExtra("SelectedItems");
 
         SendPharmacyRecycler=findViewById(R.id.recyclersendpharmacy);
 

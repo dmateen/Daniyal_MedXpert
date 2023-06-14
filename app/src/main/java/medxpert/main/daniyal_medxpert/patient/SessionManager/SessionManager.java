@@ -53,7 +53,7 @@ public class SessionManager {
         editor.remove(KEY_CNIC);
         editor.remove(KEY_password);
         editor.remove(KEY_USERTYPE);
-        
+
         editor.apply();
     }
 

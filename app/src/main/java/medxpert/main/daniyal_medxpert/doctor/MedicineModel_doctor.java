@@ -1,6 +1,11 @@
 package medxpert.main.daniyal_medxpert.doctor;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
+
+import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
 
 public class MedicineModel_doctor implements Serializable {
     String medicineName, morningQuantity, eveningQuantity, nightQuantity, duration, direction;
@@ -19,6 +24,27 @@ public class MedicineModel_doctor implements Serializable {
 
     }
 
+    protected MedicineModel_doctor(Parcel in) {
+        medicineName = in.readString();
+        morningQuantity = in.readString();
+        eveningQuantity = in.readString();
+        nightQuantity = in.readString();
+        duration = in.readString();
+        direction = in.readString();
+        isSelected = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<MedicineModel_doctor> CREATOR = new Parcelable.Creator<MedicineModel_doctor>() {
+        @Override
+        public MedicineModel_doctor createFromParcel(Parcel in) {
+            return new MedicineModel_doctor(in);
+        }
+
+        @Override
+        public MedicineModel_doctor[] newArray(int size) {
+            return new MedicineModel_doctor[size];
+        }
+    };
 
     public boolean isSelected() {
         return isSelected;
@@ -76,5 +102,8 @@ public class MedicineModel_doctor implements Serializable {
         this.direction = direction;
     }
 
+    public int describeContents() {
+        return 0;
+    }
 
 }

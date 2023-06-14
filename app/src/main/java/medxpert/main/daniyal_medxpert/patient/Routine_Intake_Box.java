@@ -11,23 +11,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.patient.Database.Db_HandlerMedboxes;
+import medxpert.main.daniyal_medxpert.patient.ModelMedicine.MedicineModel;
 import medxpert.main.daniyal_medxpert.patient.POJO.MedBox;
 import medxpert.main.daniyal_medxpert.patient.POJO.medBoxContents_Pojo;
 import medxpert.main.daniyal_medxpert.patient.RecyclerViewAdapter.MedicineAdapter;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Routine_Intake_Box extends AppCompatActivity {
 
 
-//    ArrayList<medBoxContents_Pojo>  routine_Intake_List =new ArrayList<> ();
-    List<medBoxContents_Pojo> medicines;
     RecyclerView RoutineRecyclerView;
     LinearLayoutManager linearLayout;
     @Override
@@ -53,8 +56,8 @@ public class Routine_Intake_Box extends AppCompatActivity {
         TextView toolbarTitle = findViewById(R.id.toolbartitle);
         toolbarTitle.setText(medBox.getName());
 
-        
-        
+
+
 
 
 
@@ -97,14 +100,82 @@ public class Routine_Intake_Box extends AppCompatActivity {
 
         RoutineRecyclerView=findViewById(R.id.Routine_intake);
 
-        MedicineAdapter routineIntakemanager = new MedicineAdapter(this, medicines ); //passing array list "routine_Intake_List" inside it
+        MedicineAdapter routineIntakemanager = new MedicineAdapter(this, medBox.getMedBoxList() ); //passing array list "routine_Intake_List" inside it
 
         RoutineRecyclerView.setAdapter(routineIntakemanager);
         linearLayout = new LinearLayoutManager(this);
-           RoutineRecyclerView.setLayoutManager(linearLayout);
+        RoutineRecyclerView.setLayoutManager(linearLayout);
+
+        //todo send to pharmacy button everthing is done but app is crashing
 
 
-           //buttom navigation menu click listening:
+        Button updatemedboxbtn = findViewById(R.id.updateMedbox);
+
+        updatemedboxbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Db_HandlerMedboxes db_handlerMedboxes = new Db_HandlerMedboxes("Medboxes",Routine_Intake_Box.this);
+                db_handlerMedboxes.updateDB(medBox);
+
+
+                Intent intent = new Intent(Routine_Intake_Box.this, MainActivity.class);
+//                intent.putExtra("SelectedItems", selectedItems);
+                startActivity(intent);
+
+                //Adding Medbox to the ArrayList
+                // medBox.add(medBox);
+                // my_array_Adapter.notifyDataSetChanged();
+
+            }
+
+//                Intent intent = new Intent(Routine_Intake_Box.this, SendPharmacy.class);
+//                intent.putExtra("SelectedItems", selectedItems);
+//                startActivity(intent);
+
+
+        });
+
+//        Button updatemedboxbtn = findViewById(R.id.updateMedbox);
+//
+//        updatemedboxbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ArrayList<MedicineModel> selectedItems=new ArrayList<>();
+//
+//                if(medBox!=null)
+//                {
+//
+//
+//                    List<medBoxContents_Pojo> medBoxList=medBox.getMedBoxList();
+//                    MedicineModel obj1;
+//
+//                    for(int i=0;i<medBox.getMedBoxList().size();i++)
+//                    {
+//                        String medname = medBoxList.get(i).getMedicinename();
+//                        String qty = String.valueOf(medBoxList.get(i).getQuantity());
+//
+//                        //creating obj of pojo type
+//
+//                        obj1 =new MedicineModel(medname,qty,"0","0","","");
+//                        selectedItems.add(obj1);
+//
+//                    }
+//                        Intent intent = new Intent(Routine_Intake_Box.this, SendPharmacy.class);
+//                        intent.putExtra("SelectedItems", selectedItems);
+//                        startActivity(intent);
+//
+//                }
+//
+////                Intent intent = new Intent(Routine_Intake_Box.this, SendPharmacy.class);
+////                intent.putExtra("SelectedItems", selectedItems);
+////                startActivity(intent);
+//
+//            }
+//        });
+
+
+        //buttom navigation menu click listening:
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
