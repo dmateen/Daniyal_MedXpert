@@ -1,7 +1,11 @@
 package medxpert.main.daniyal_medxpert.patient.SessionManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.View;
+
+import medxpert.main.daniyal_medxpert.patient.onBoarding;
 
 public class SessionManager {
     private static final String PREF_NAME = "AppSession";
@@ -44,5 +48,15 @@ public class SessionManager {
     public boolean isLoggedIn() {
         return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false);
     }
+    public void setLoggedOut() {
+        editor.remove(KEY_IS_LOGGED_IN);
+        editor.remove(KEY_CNIC);
+        editor.remove(KEY_password);
+        editor.remove(KEY_USERTYPE);
+        
+        editor.apply();
+    }
+
+
 }
 

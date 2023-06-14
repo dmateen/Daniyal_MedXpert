@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import medxpert.main.daniyal_medxpert.R;
+import medxpert.main.daniyal_medxpert.patient.SessionManager.SessionManager;
 
 public class dashboard extends AppCompatActivity {
 
@@ -110,6 +111,11 @@ public class dashboard extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    public void logout(View view){
+        new SessionManager(this).setLoggedOut();
+        startActivity(new Intent(this, onBoarding.class));
     }
 
 }

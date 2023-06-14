@@ -45,6 +45,17 @@ public class SessionManager {
         return sharedPreferences.getString(KEY_DOCTORSPECIALIZATION,null);
     }
 
+    public void setLoggedOut() {
+        editor.remove(KEY_IS_LOGGED_IN);
+        editor.remove(KEY_CNIC);
+        editor.remove(KEY_password);
+        editor.remove(KEY_USERTYPE);
+        editor.remove(KEY_DOCTORNAME);
+        editor.remove(KEY_DOCTORSPECIALIZATION);
+        editor.apply();
+    }
+
+
     public String getCNIC(){
         return sharedPreferences.getString(KEY_CNIC,null);
     }
