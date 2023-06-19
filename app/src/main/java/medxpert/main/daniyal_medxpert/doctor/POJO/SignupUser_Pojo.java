@@ -12,7 +12,7 @@ public class SignupUser_Pojo {
     private String phoneNumber;
     private String password;
 
-
+    public SignupUser_Pojo(){}
     public SignupUser_Pojo(String firstName, String lastName, String cnic, String specialization,String dateOfBirth, String gender,
                            String countryCode, String phoneNumber, String password) {
         this.firstName = firstName;

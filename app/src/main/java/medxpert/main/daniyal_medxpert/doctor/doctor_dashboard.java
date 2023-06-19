@@ -39,13 +39,34 @@ public class doctor_dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cnic=cnicEditText.getEditText().getText().toString();
-                if(Validation.validateCNIC(cnic,cnicEditText))
-                {
-                    Intent intent=new Intent(doctor_dashboard.this, Layout1.class);
-                    intent.putExtra("patientCNIC",cnic);
-                    Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                }
+
+                Validation.validateCNICfromDB(cnic, cnicEditText, new Validation.CNICValidationCallback() {
+                    @Override
+                    public void onValidationResult(boolean isValid) {
+                        if (isValid) {
+                            Intent intent=new Intent(doctor_dashboard.this, Layout1.class);
+                            intent.putExtra("patientCNIC",cnic);
+                            Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+
+
+
+
+//                if(Validation.validateCNIC(cnic,cnicEditText))
+//                {
+//                    Intent intent=new Intent(doctor_dashboard.this, Layout1.class);
+//                    intent.putExtra("patientCNIC",cnic);
+//                    Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
+//                    startActivity(intent);
+//                }
+//                else
+//                {
+//
+//                }
 
             }
         });
@@ -57,13 +78,27 @@ public class doctor_dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cnic=cnicEditText.getEditText().getText().toString();
-                if(Validation.validateCNIC(cnic,cnicEditText))
-                {
-                    Intent intent=new Intent(doctor_dashboard.this,PrescriptionList_Doctor.class);
-                    intent.putExtra("patientCNIC",cnic);
-                    Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                }
+
+
+                Validation.validateCNICfromDB(cnic, cnicEditText, new Validation.CNICValidationCallback() {
+                    @Override
+                    public void onValidationResult(boolean isValid) {
+                        if (isValid) {
+                            Intent intent=new Intent(doctor_dashboard.this,PrescriptionList_Doctor.class);
+                            intent.putExtra("patientCNIC",cnic);
+                            Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+//                if(Validation.validateCNIC(cnic,cnicEditText))
+//                {
+//                    Intent intent=new Intent(doctor_dashboard.this,PrescriptionList_Doctor.class);
+//                    intent.putExtra("patientCNIC",cnic);
+//                    Toast.makeText(doctor_dashboard.this, cnic, Toast.LENGTH_SHORT).show();
+//                    startActivity(intent);
+//                }
 
             }
         });
@@ -77,6 +112,10 @@ public class doctor_dashboard extends AppCompatActivity {
     public void logout(View view){
         new SessionManager(this).setLoggedOut();
         startActivity(new Intent(this, onBoarding.class));
+    }
+
+    public void updateProfile(View view){
+        startActivity(new Intent(doctor_dashboard.this,update_profile_doctor.class));
     }
 
 }

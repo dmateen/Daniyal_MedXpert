@@ -139,9 +139,10 @@ public class DoctorSignupActivity extends AppCompatActivity {
             return false;
 
         // Validate CNIC
-        cnic = cnicEditText.getEditText().getText().toString().trim();
+        cnic = cnicEditText.getEditText().getText().toString();
         if(!Validation.validateCNIC(cnic,cnicEditText))
             return false;
+
 
         // Validate Last Name
         specialization = specializationInputLayout.getEditText().getText().toString().trim();

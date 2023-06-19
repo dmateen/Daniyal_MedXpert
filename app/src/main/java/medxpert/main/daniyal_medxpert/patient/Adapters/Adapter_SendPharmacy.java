@@ -54,7 +54,11 @@ public class Adapter_SendPharmacy extends RecyclerView.Adapter<Adapter_SendPharm
         holder.Quantity.setText(String.valueOf(totalQuantity));
 
 
+
+
     }
+
+
 
     @Override
     public int getItemCount() {

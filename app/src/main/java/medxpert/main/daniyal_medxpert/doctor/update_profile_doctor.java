@@ -1,4 +1,4 @@
-package medxpert.main.daniyal_medxpert.patient;
+package medxpert.main.daniyal_medxpert.doctor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,25 +11,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.material.textfield.TextInputLayout;
+
 
 import java.util.Calendar;
 
 import medxpert.main.daniyal_medxpert.R;
-import medxpert.main.daniyal_medxpert.patient.SessionManager.SessionManager;
-import medxpert.main.daniyal_medxpert.patient.Database.Db_Handler;
-import medxpert.main.daniyal_medxpert.patient.Database.Db_HandlerUpdateProfile;
-import medxpert.main.daniyal_medxpert.patient.POJO.SignupUser_Pojo;
-import medxpert.main.daniyal_medxpert.patient.Validations.Validation;
+import medxpert.main.daniyal_medxpert.doctor.Database.doctor_Db_Handler;
 
-public class update_patient_profile extends AppCompatActivity {
+import medxpert.main.daniyal_medxpert.doctor.Database.doctor_Db_HandlerUpdateProfile;
+import medxpert.main.daniyal_medxpert.doctor.POJO.SignupUser_Pojo;
+import medxpert.main.daniyal_medxpert.doctor.Validations.Validation;
+
+import medxpert.main.daniyal_medxpert.doctor.SessionManager.SessionManager;
+
+
+public class update_profile_doctor extends AppCompatActivity {
 
     private TextInputLayout firstNameEditText;
     private TextInputLayout lastNameEditText;
@@ -40,6 +44,7 @@ public class update_patient_profile extends AppCompatActivity {
     private TextInputLayout phoneNumberEditText;
     private TextInputLayout passwordEditText;
     private TextInputLayout dateInputLayout;
+    private TextInputLayout specializationInputLayout;
 
     String firstName;
     String lastName;
@@ -49,9 +54,10 @@ public class update_patient_profile extends AppCompatActivity {
     String countryCode;
     String phoneNumber;
     String password;
+    String specialization;
 
-    private Db_Handler dbHandler;
-    private Db_HandlerUpdateProfile dbHandler_Updateprofile;
+    private doctor_Db_Handler dbHandler;
+    private doctor_Db_HandlerUpdateProfile doctor_dbHandler_Updateprofile;
     private SignupUser_Pojo dataFormDB;
 
 
@@ -59,8 +65,11 @@ public class update_patient_profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_patient_profile);
+        setContentView(R.layout.activity_update_profile_doctor);
 
+        doctor_dbHandler_Updateprofile=new doctor_Db_HandlerUpdateProfile("doctors");
+
+        dbHandler=new doctor_Db_Handler("doctors");
 
         //Showing back button on toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -68,11 +77,6 @@ public class update_patient_profile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        dbHandler=new Db_Handler("patients");
-        dbHandler_Updateprofile=new Db_HandlerUpdateProfile("patients");
-
-        LinearLayout linearLayout=findViewById(R.id.data);
-        linearLayout.setVisibility(View.GONE);
 
 
         // Initialize the EditText views
@@ -84,7 +88,7 @@ public class update_patient_profile extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_EditText);
         dateOfBirthEditText = findViewById(R.id.dateOfBirthEditText);
         dateInputLayout = findViewById(R.id.dateOfBirthInputLayout);
-        genderRadioGroup=findViewById(R.id.genderRadioGroup);
+        specializationInputLayout=findViewById(R.id.specialization_EditText);
 
 
         //Adding Listeners
@@ -95,14 +99,15 @@ public class update_patient_profile extends AppCompatActivity {
         phoneNumberEditText.getEditText().setOnFocusChangeListener(phoneNumberFocusChangeListener);
         passwordEditText.getEditText().setOnFocusChangeListener(passwordFocusChangeListener);
 
-        dbHandler_Updateprofile.getRecord(new SessionManager(this).getCNIC(), new Db_HandlerUpdateProfile.GetRecordCallback() {
+
+        doctor_dbHandler_Updateprofile.getRecord(new SessionManager(this).getCNIC(), new doctor_Db_HandlerUpdateProfile.GetRecordCallbackdoctor() {
             @Override
             public void onSuccess(SignupUser_Pojo userPojo) {
                 dataFormDB=userPojo;
 
                 ProgressBar progressBar=findViewById(R.id.progressBar);
                 progressBar.setVisibility(View.GONE);
-                linearLayout.setVisibility(View.VISIBLE);
+
 
                 firstNameEditText.getEditText().setText(dataFormDB.getFirstName());
                 lastNameEditText.getEditText().setText(dataFormDB.getLastName());
@@ -113,6 +118,7 @@ public class update_patient_profile extends AppCompatActivity {
                 phoneNumberEditText.getEditText().setText(dataFormDB.getPhoneNumber());
                 passwordEditText.getEditText().setText(dataFormDB.getPassword());
                 dateInputLayout.getEditText().setText(dataFormDB.getDateOfBirth());
+                specializationInputLayout.getEditText().setText(dataFormDB.getSpecialization());
                 if (dataFormDB.getGender().equals("Male")) {
                     RadioButton maleRadioBtn=findViewById(R.id.maleRadioButton);
                     maleRadioBtn.setChecked(true);
@@ -133,11 +139,12 @@ public class update_patient_profile extends AppCompatActivity {
         });
 
 
+
     }
 
 
     public void moveToLogin(View view){
-        this.startActivity(new Intent(this,login.class));
+        this.startActivity(new Intent(this,DoctorLoginActivity.class));
     }
 
     //Function when register button is clicked
@@ -152,7 +159,7 @@ public class update_patient_profile extends AppCompatActivity {
             return;
 
         // Create a data object to represent the user's data
-        SignupUser_Pojo user = new SignupUser_Pojo(firstName, lastName, cnic, dateOfBirth, gender, countryCode, phoneNumber, password);
+        SignupUser_Pojo user = new SignupUser_Pojo(firstName, lastName, cnic,specialization, dateOfBirth, gender, countryCode, phoneNumber, password);
 //
         // Write the data to the database using the DbHandler instance
         dbHandler.writeData(cnic, user);
@@ -161,7 +168,7 @@ public class update_patient_profile extends AppCompatActivity {
         Toast.makeText(this,password, Toast.LENGTH_SHORT).show();
 
         //Intent to move to the login page
-        startActivity(new Intent(this, login.class));
+        startActivity(new Intent(this, DoctorLoginActivity.class));
     }
 
 
@@ -179,8 +186,14 @@ public class update_patient_profile extends AppCompatActivity {
             return false;
 
         // Validate CNIC
-        cnic = cnicEditText.getEditText().getText().toString().trim();
+        cnic = cnicEditText.getEditText().getText().toString();
         if(!Validation.validateCNIC(cnic,cnicEditText))
+            return false;
+
+
+        // Validate Last Name
+        specialization = specializationInputLayout.getEditText().getText().toString().trim();
+        if(!Validation.validateName(specialization,specializationInputLayout))
             return false;
 
         // Validate date of birth
