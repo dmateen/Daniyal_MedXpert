@@ -6,9 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="signUp">
-
-
+    android:onClick="DoctorSignupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,7 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,10 +46,7 @@
             />
 
 
-
-
         <LinearLayout
-            android:id="@+id/data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -61,7 +55,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintVertical_bias="0.0">
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -154,6 +147,39 @@
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/specialization_EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="auto"
+                android:focusableInTouchMode="true"
+                android:hint="Specialization"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxStrokeColor="#0755E9"
+                app:endIconMode="clear_text"
+                app:endIconTint="#0755E9"
+                app:helperText="Please enter your Specialization"
+                app:helperTextEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dateOfBirthInputLayout"
@@ -348,10 +374,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/roundedbtn_layout"
-                android:layout_marginBottom="20dp"
                 android:onClick="signUp"
                 android:text="Update Profile"
                 android:theme="@style/Theme.Daniyal_MedXpert_Custom" />

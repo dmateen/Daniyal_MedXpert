@@ -53,6 +53,15 @@ public class dashboard extends AppCompatActivity {
         });
 
 
+        CardView profileCard = findViewById(R.id.profileCard);
+        profileCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(dashboard.this,update_patient_profile.class);
+                startActivity(intent);
+            }
+        });
+
         CardView medBoxCard=findViewById(R.id.medBoxBtn);
         medBoxCard.setOnClickListener(new View.OnClickListener() {
             @Override

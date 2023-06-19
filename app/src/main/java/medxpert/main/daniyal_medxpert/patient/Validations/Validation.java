@@ -7,11 +7,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Validation {
 
-
+    static DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://medxpert-2023-default-rtdb.firebaseio.com/");
+    //Function to validate Name
     //Function to validate Name
     public static boolean validateName(String Name, TextInputLayout NameEditText) {
         if (Name.isEmpty() || !Name.matches("[a-zA-Z ]+")) {
@@ -24,6 +30,41 @@ public class Validation {
         }
     }
 
+    public interface CNICValidationCallbackpatient
+    {
+        boolean onValidationResultpatient(boolean isValid);
+
+    }
+
+    public static boolean validateCNICforSIGNUP(String cnic, TextInputLayout cnicEditText, CNICValidationCallbackpatient callback ) {
+        if (!cnic.matches("[0-9]{13}") || cnic.isEmpty()) {
+            cnicEditText.setError("Invalid CNIC - Must be 13 numbers without dashes");
+            callback.onValidationResultpatient(false);
+        }
+        else
+        {
+            databaseReference.child("patients").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    if (snapshot.hasChild(cnic)) {
+                        cnicEditText.setError("CNIC you entered alreay exists");
+                        callback.onValidationResultpatient(false);
+                    } else {
+                        cnicEditText.setError(null);
+                        callback.onValidationResultpatient(true);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Handle cancellation/error
+                    callback.onValidationResultpatient(false);
+                }
+            });
+        }
+        return false;
+    }
+
 
     // Function to validate CNIC
     public static boolean validateCNIC(String cnic,TextInputLayout cnicEditText) {
@@ -31,9 +72,17 @@ public class Validation {
         if (!cnic.matches("[0-9]{13}") || cnic.isEmpty()) {
             cnicEditText.setError("Invalid CNIC - Must be 13 numbers without dashes");
             return false;
-        } else {
+        } else
+        {
             cnicEditText.setError(null);
         }
+        if(validateCNICforSIGNUP(cnic, cnicEditText, new CNICValidationCallbackpatient() {
+            @Override
+            public boolean onValidationResultpatient(boolean isValid) {
+                cnicEditText.setError("CNIC you entered alreay exists");
+                return false;
+            }
+        }));
 
         return true;
     }

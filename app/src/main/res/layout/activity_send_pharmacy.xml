@@ -60,28 +60,29 @@
         app:cardCornerRadius="@dimen/_28sdp"
         app:cardPreventCornerOverlap="false">
 
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/_72sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:background="@drawable/emaillayout3"
-            android:hint="Email/Phone"
-            android:inputType="text"
-            android:padding="@dimen/_12sdp" />
+<!--        <EditText-->
+<!--            android:id="@+id/editTextTextEmailAddress"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/_20sdp"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:layout_marginBottom="@dimen/_72sdp"-->
+<!--            android:layout_marginEnd="@dimen/_20sdp"-->
+<!--            android:background="@drawable/emaillayout3"-->
+<!--            android:hint="Email/Phone"-->
+<!--            android:inputType="text"-->
+<!--            android:padding="@dimen/_12sdp" />-->
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_28sdp"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_28sdp"
             android:background="@drawable/sendbuttonlayout3"
+            android:onClick="SendPharmacyBtnClicked"
             android:text="Send"
             android:textColor="@color/white" />
 
